@@ -1,39 +1,48 @@
-# 🎬 Data Speaks!! — IMDB Sentiment Analysis
+# Data Speaks!! — Midterm Submission
 
-Welcome to the **Data Speaks!!** project repository! This project fulfills the course assignment requirements by applying Machine Learning and Deep Learning algorithms to a publicly available educational dataset (IMDB Movie Reviews) to perform binary sentiment classification.
+**Course Assignment:** Data Speaks!!  
+**Dataset:** IMDB Large Movie Review Dataset (Binary Sentiment Classification)
 
-## 📂 Project Structure
+This repository serves as the official Midterm Submission, containing all source code, models, data preprocessing pipelines, the final project website, and the project report.
 
-To make it easy to evaluate, the project is strictly organized into independent folders based on the pipeline stage and the specific models used.
+## 📋 Midterm Deliverables Checklist
+- [x] **Source code (Python/Jupyter Notebook):** Located in `notebooks/`, `logistic/`, `naive_bayes/`, `lstm/`, `bert/`, and `dim_reduction/`.
+- [x] **Dataset with preprocessing steps:** Raw data processing is in `notebooks/data_to_csv.ipynb`. Cleaning steps (HTML stripping, etc.) are implemented across all model notebooks.
+- [x] **Final web page:** Located in `docs/` and hosted via GitHub Pages. Features dataset overview, visualizations, methodology, findings, and conclusions.
+- [x] **Hosted through GitHub:** Repository is pushed and live.
+- [x] **Project report (3–5 pages):** See `Midterm_Project_Report.md`.
+
+## 🗂️ Project Structure (File Names Formatted)
 
 ```text
 msd_project/
-├── README.md               <-- You are here!
+├── Midterm_Project_Report.md  <-- 📄 Official 3-5 Page Project Report
+├── README.md                  <-- 📄 You are here!
 │
-├── docs/                   <-- 🌐 Project Website (Hosted on GitHub Pages)
-│   ├── index.html          (Main website structure)
-│   ├── css/                (Styling)
-│   └── js/                 (Interactivity)
+├── docs/                      <-- 🌐 Project Website (Responsive HTML/CSS/JS)
+│   ├── index.html             (Dataset Overview & Model Comparisons)
+│   ├── eda.html               (Data Visualizations)
+│   ├── css/ & js/             (Styling & Interactivity)
+│   └── model-*.html           (Methodology & Key Findings for each model)
 │
-├── notebooks/              <-- 1. Data Preprocessing & EDA
-│   ├── data_to_csv.ipynb   (Extracts raw IMDB data into usable CSVs)
-│   └── EDA.ipynb           (Comprehensive Exploratory Data Analysis)
+├── notebooks/                 <-- 📊 1. Data Preprocessing & EDA
+│   ├── data_to_csv.ipynb      (Data Extraction)
+│   └── EDA.ipynb              (Exploratory Data Analysis)
 │
-├── processed/              <-- 2. The working dataset
-│   ├── imdb_train.csv      (25,000 raw training records)
-│   └── imdb_test.csv       (25,000 raw testing records)
+├── dim_reduction/             <-- 📉 2. Dimensionality Reduction Task
+│   └── DIM_REDUCTION.ipynb    (Truncated SVD / PCA on TF-IDF data)
 │
-├── dim_reduction/        <-- Dimensionality Reduction Task
-│   └── DIM_REDUCTION.ipynb (Truncated SVD / PCA on TF-IDF data)
+├── naive_bayes/               <-- 🤖 3. Classification Task (Model 1)
+│   └── Naive_Bayes_Report.docx (Baseline Naive Bayes implementation)
 │
-├── logistic/               <-- 3. Baseline Machine Learning Model
-│   └── LOGISTIC.ipynb      (TF-IDF Vectorization + Logistic Regression)
+├── logistic/                  <-- 🤖 4. Classification Task (Model 2)
+│   └── LOGISTIC.ipynb         (TF-IDF Vectorization + Logistic Regression)
 │
-├── lstm/                   <-- 4. Deep Learning Sequence Model
-│   └── LSTM.ipynb          (Bidirectional LSTM built from scratch with PyTorch)
+├── lstm/                      <-- 🧠 5. Classification Task (Model 3)
+│   └── LSTM.ipynb             (Bidirectional LSTM built from scratch)
 │
-└── bert/                   <-- 5. Advanced Transformer Model
-    └── BERT.ipynb          (Fine-tuning bert-base-uncased with PyTorch/Transformers)
+└── bert/                      <-- 🚀 6. Classification Task (Model 4)
+    └── BERT.ipynb             (Fine-tuning bert-base-uncased Transformer)
 ```
 
 ## 🚀 How to Review the Project
