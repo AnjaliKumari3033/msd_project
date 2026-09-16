@@ -10,6 +10,11 @@ To make it easy to evaluate, the project is strictly organized into independent 
 msd_project/
 ├── README.md               <-- You are here!
 │
+├── docs/                   <-- 🌐 Project Website (Hosted on GitHub Pages)
+│   ├── index.html          (Main website structure)
+│   ├── css/                (Styling)
+│   └── js/                 (Interactivity)
+│
 ├── notebooks/              <-- 1. Data Preprocessing & EDA
 │   ├── data_to_csv.ipynb   (Extracts raw IMDB data into usable CSVs)
 │   └── EDA.ipynb           (Comprehensive Exploratory Data Analysis)
@@ -54,5 +59,5 @@ Because GitHub has a strict 100 MB per-file limit, the finalized deep learning m
 - [x] **Machine Learning Algorithms**: Logistic Regression (Classification).
 - [x] **Deep Learning Algorithms**: LSTM and BERT.
 - [ ] **Insights & Interpretations**: (To be detailed in the project report & web page).
-- [ ] **Responsive Web Page**: (Pending development).
+- [x] **Responsive Web Page**: Completed (`docs/` folder).
 - [ ] **Project Report (3-5 pages)**: (Pending).
