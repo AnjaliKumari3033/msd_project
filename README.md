@@ -18,6 +18,9 @@ msd_project/
 │   ├── imdb_train.csv      (25,000 raw training records)
 │   └── imdb_test.csv       (25,000 raw testing records)
 │
+├── dim_reduction/        <-- Dimensionality Reduction Task
+│   └── DIM_REDUCTION.ipynb (Truncated SVD / PCA on TF-IDF data)
+│
 ├── logistic/               <-- 3. Baseline Machine Learning Model
 │   └── LOGISTIC.ipynb      (TF-IDF Vectorization + Logistic Regression)
 │
