@@ -1,0 +1,2 @@
+model,test_mse,test_mae,test_r2
+BERT_Regression,2.24622567778004,0.9897079944629824,0.8154346252449884
