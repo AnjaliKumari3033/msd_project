@@ -42,6 +42,9 @@ If you want to review the code execution top-to-bottom, we recommend following t
 ### 🧹 Note on Data Cleaning
 Rather than creating a single massive "cleaning" script, the text cleaning (HTML stripping, whitespace normalization, deduplication) is baked directly into **Step 3** of every modeling notebook. This ensures that every model's pipeline can be run completely independently from start to finish.
 
+### ⚠️ Note on Model Weights
+Because GitHub has a strict 100 MB per-file limit, the finalized deep learning model weights (e.g., the 400MB+ `.safetensors` for BERT and `.pt` for LSTM) are **not included** in this repository. The CSV datasets and fully executed notebooks *are* included, so all outputs, logs, and plots can be reviewed directly. To regenerate the model weights locally, simply "Run All" on the respective notebooks.
+
 ## 📊 Expected Deliverables Covered
 - [x] **Dataset Selection**: IMDB Movie Reviews (50,000 records).
 - [x] **EDA & Preprocessing**: `notebooks/EDA.ipynb` and Step 3 of model notebooks.
