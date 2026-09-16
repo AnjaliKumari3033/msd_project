@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data Speaks - IMDB Sentiment Analysis Project using Machine Learning and Deep Learning.">
+    <title>Data Speaks | Sentiment Analysis Project</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Data Speaks.</a>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#eda">Analysis</a></li>
+                <li><a href="#models">Models</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero-title">Decoding Sentiment with Machine Learning</h1>
+            <p class="hero-subtitle">A comprehensive analysis of 50,000 IMDB movie reviews using traditional algorithms, Recurrent Neural Networks, and modern Transformer architectures.</p>
+            <a href="#overview" class="btn btn-primary">Explore the Project</a>
+        </div>
+    </header>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Project Overview</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>The Objective</h3>
+                    <p>The goal of this project is to perform binary sentiment classification on natural language text. By analyzing the raw text of movie reviews, the models must predict whether the underlying sentiment of the reviewer is Positive or Negative.</p>
+                </div>
+                <div class="card">
+                    <h3>The Dataset</h3>
+                    <p>We utilized the benchmark Large Movie Review Dataset (IMDB). It contains 50,000 highly polar reviews, perfectly balanced between 25,000 positive and 25,000 negative samples, making it an ideal candidate for baseline machine learning research.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDA Section -->
+    <section id="eda" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Exploratory Data Analysis</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="content-block">
+                <h3>Data Quality and Preprocessing</h3>
+                <p>Before any modeling could begin, a thorough audit of the dataset was conducted. The raw text contained thousands of HTML artifacts (such as line break tags) scraped directly from the web. Over 50% of the raw data required systematic cleaning.</p>
+                <p>A rigorous text cleaning pipeline was implemented across all models to strip HTML entities, normalize whitespace, and remove exact duplicates, ensuring the algorithms learned from pure semantic content.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Dimensionality Reduction</h3>
+                <p>Text data is inherently high-dimensional. To visualize the semantic spread of the reviews, the text was converted into a 5,000-dimensional TF-IDF sparse matrix. Using Truncated Singular Value Decomposition (SVD), these 5,000 dimensions were mathematically compressed down to just 2 dimensions, allowing the distinct clustering of positive and negative vocabularies to be visualized on a standard coordinate plane.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section id="models" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Modeling Architectures</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid-3">
+                <!-- Logistic Regression -->
+                <div class="model-card">
+                    <div class="model-header bg-navy">
+                        <h3>Logistic Regression</h3>
+                        <span class="badge">Baseline</span>
+                    </div>
+                    <div class="model-body">
+                        <p><strong>Feature Extraction:</strong> TF-IDF Vectorization</p>
+                        <p>As a baseline machine learning approach, Term Frequency-Inverse Document Frequency was used to map word frequencies. A standard Logistic Regression classifier was then trained to draw a linear decision boundary between the classes.</p>
+                    </div>
+                </div>
+
+                <!-- LSTM -->
+                <div class="model-card">
+                    <div class="model-header bg-blue">
+                        <h3>Bidirectional LSTM</h3>
+                        <span class="badge">Deep Learning</span>
+                    </div>
+                    <div class="model-body">
+                        <p><strong>Architecture:</strong> PyTorch RNN</p>
+                        <p>To capture the sequential nature of language, a Long Short-Term Memory (LSTM) neural network was built from scratch. By reading the sequences in both directions (Bidirectional), the model captures deeper contextual dependencies over time.</p>
+                    </div>
+                </div>
+
+                <!-- BERT -->
+                <div class="model-card">
+                    <div class="model-header bg-dark">
+                        <h3>BERT</h3>
+                        <span class="badge">State-of-the-Art</span>
+                    </div>
+                    <div class="model-body">
+                        <p><strong>Architecture:</strong> Transformer</p>
+                        <p>The state-of-the-art approach involved fine-tuning the pre-trained <code>bert-base-uncased</code> model from Google. Utilizing self-attention mechanisms, BERT understands the nuanced context of every word relative to the entire sentence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Conclusion</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="content-block text-center">
+                <p class="lead-text">This project successfully demonstrates the evolution of Natural Language Processing techniques.</p>
+                <p>From sparse matrix representations and linear classifiers to complex recurrent sequences and modern self-attention transformers, the results highlight the significant performance gains achieved by allowing models to understand the deeper context of human language.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Data Speaks Project. Developed for academic demonstration.</p>
+            <p class="small-text">Source code available on GitHub.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
