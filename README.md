@@ -32,17 +32,17 @@ msd_project/
 ├── dim_reduction/             <-- 📉 2. Dimensionality Reduction Task
 │   └── DIM_REDUCTION.ipynb    (Truncated SVD / PCA on TF-IDF data)
 │
-├── naive_bayes/               <-- 🤖 3. Classification Task (Model 1)
-│   └── Naive_Bayes_Report.docx (Baseline Naive Bayes implementation)
+├── processed_for_binary_classification/ <-- 💾 Binary Label Data
+│   └── imdb_train.csv         (25,000 raw training records)
 │
-├── logistic/                  <-- 🤖 4. Classification Task (Model 2)
-│   └── LOGISTIC.ipynb         (TF-IDF Vectorization + Logistic Regression)
+├── processed_for_regression/            <-- 📈 Continuous Rating Data (Endterm Prep)
+│   └── imdb_regression_train.csv        (25,000 records with 1-10 scores)
 │
-├── lstm/                      <-- 🧠 5. Classification Task (Model 3)
-│   └── LSTM.ipynb             (Bidirectional LSTM built from scratch)
-│
-└── bert/                      <-- 🚀 6. Classification Task (Model 4)
-    └── BERT.ipynb             (Fine-tuning bert-base-uncased Transformer)
+└── binary_classification_models/        <-- 🤖 3. Classification Models
+    ├── naive_bayes/           (Baseline Naive Bayes implementation)
+    ├── logistic/              (TF-IDF Vectorization + Logistic Regression)
+    ├── lstm/                  (Bidirectional LSTM built from scratch)
+    └── bert/                  (Fine-tuning bert-base-uncased Transformer)
 ```
 
 ## 🚀 How to Review the Project
