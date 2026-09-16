@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSTM | Data Speaks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Data Speaks.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="eda.html">EDA</a></li>
+                <li><a href="model-naivebayes.html">Naive Bayes</a></li>
+                <li><a href="model-logistic.html">Logistic</a></li>
+                <li><a href="model-lstm.html">LSTM</a></li>
+                <li><a href="model-bert.html">BERT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bidirectional LSTM</h2>
+                <span class="badge bg-blue">Deep Learning Sequence Model</span>
+                <div class="divider"></div>
+            </div>
+            <div class="card">
+                <h3>Architecture & Preprocessing</h3>
+                <p>To overcome the limitations of "bag-of-words" models, we implemented a Long Short-Term Memory (LSTM) Neural Network built entirely from scratch using PyTorch.</p>
+                <p><strong>Pipeline specifics:</strong></p>
+                <ul>
+                    <li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">Dynamic Vocabulary Building: Mapping the 25,000 most frequent words to integer tokens.</li>
+                    <li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">Embedding Layer: Learning 128-dimensional dense vector representations for every word.</li>
+                    <li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">2-Layer Bidirectional processing: Reading the sequences left-to-right and right-to-left.</li>
+                </ul>
+                <h3 style="margin-top: 2rem;">Training & Results</h3>
+                <p>The model was trained for a maximum of 20 epochs with an Early Stopping patience of 3 to prevent overfitting.</p>
+                <p>It achieved <strong>87.78% accuracy</strong>. While this is lower than Logistic Regression, it is notable because the LSTM learned the structural relationships of language completely from scratch without relying on statistical hacks like TF-IDF.</p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer"><div class="container"><p>&copy; 2026 Data Speaks Team.</p></div></footer>
+</body>
+</html>

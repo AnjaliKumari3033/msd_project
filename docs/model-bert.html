@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BERT | Data Speaks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Data Speaks.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="eda.html">EDA</a></li>
+                <li><a href="model-naivebayes.html">Naive Bayes</a></li>
+                <li><a href="model-logistic.html">Logistic</a></li>
+                <li><a href="model-lstm.html">LSTM</a></li>
+                <li><a href="model-bert.html">BERT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>BERT Transformer</h2>
+                <span class="badge bg-dark">State-of-the-Art Deep Learning</span>
+                <div class="divider"></div>
+            </div>
+            <div class="card">
+                <h3>Architecture & Fine-Tuning</h3>
+                <p>Bidirectional Encoder Representations from Transformers (BERT) represents the pinnacle of modern NLP performance. Rather than training from scratch, we leveraged Transfer Learning by fine-tuning Google's <code>bert-base-uncased</code> model.</p>
+                <p><strong>Pipeline specifics:</strong></p>
+                <ul>
+                    <li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">Utilizing the pre-trained WordPiece Tokenizer.</li>
+                    <li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">Leveraging massive pre-trained contextual embeddings learned from reading Wikipedia and the BookCorpus.</li>
+                    <li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">Fine-tuning the final classification head over 3 epochs on a GPU.</li>
+                </ul>
+                <h3 style="margin-top: 2rem;">Results</h3>
+                <p>The fine-tuned BERT model achieved an outstanding <strong>94.16% accuracy</strong> and a 0.9416 Macro F1-Score on the test set, utterly dominating the traditional machine learning approaches. By employing Self-Attention mechanisms, BERT is able to perfectly understand negation, sarcasm, and long-range dependencies within the movie reviews.</p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer"><div class="container"><p>&copy; 2026 Data Speaks Team.</p></div></footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

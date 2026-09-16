@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDA | Data Speaks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Data Speaks.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="eda.html">EDA</a></li>
+                <li><a href="model-naivebayes.html">Naive Bayes</a></li>
+                <li><a href="model-logistic.html">Logistic</a></li>
+                <li><a href="model-lstm.html">LSTM</a></li>
+                <li><a href="model-bert.html">BERT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Exploratory Data Analysis</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="card" style="margin-bottom: 2rem;">
+                <h3>Dataset Integrity & Cleaning</h3>
+                <p>The IMDB dataset consists of 50,000 highly polar movie reviews. During our initial data audit, we discovered that over 50% of the raw text contained HTML artifacts, predominantly line break tags, due to how the data was scraped.</p>
+                <p>A rigorous text cleaning pipeline was established to unescape HTML entities, strip out all HTML tags, and normalize whitespace before any modeling took place.</p>
+            </div>
+            <div class="card">
+                <h3>Dimensionality Reduction (Truncated SVD)</h3>
+                <p>Text data is incredibly high-dimensional. By applying TF-IDF vectorization, we mapped the text into a 5,000-dimensional space. To visualize the natural clustering of positive and negative sentiments, we applied Truncated Singular Value Decomposition (SVD), which is the industry standard for dimensionality reduction on sparse text matrices.</p>
+                <p>We compressed the 5,000 dimensions down to 2 dimensions for visualization, and 100 dimensions for baseline testing, proving that predictive accuracy is retained even when compressing 98% of the feature space.</p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer"><div class="container"><p>&copy; 2026 Data Speaks Team.</p></div></footer>
+</body>
+</html>
