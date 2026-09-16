@@ -1,0 +1,13 @@
+# Datasets
+data/raw/
+
+# Model Weights (too large for GitHub)
+**/models/
+*.pt
+*.bin
+*.safetensors
+
+# Python/Jupyter cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

@@ -1,0 +1,2 @@
+Model,Accuracy,Precision_Macro,Recall_Macro,F1_Macro,F1_Class0_Neg,F1_Class1_Pos,Training_Time_Sec
+"LSTM (Bidirectional, 2-layer)",0.8778,0.8795,0.8779,0.8777,0.8814,0.8739,831.4
