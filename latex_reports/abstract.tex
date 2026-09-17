@@ -1,22 +1,59 @@
 \documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{geometry}
-\geometry{a4paper, margin=1in}
 
-\title{\textbf{Abstract: Sentiment Analysis and Continuous Rating Prediction on IMDB Movie Reviews}}
-\author{Data Speaks Project Team}
-\date{\today}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{authblk}
+
+\title{\textbf{Project Abstract: Multi-Paradigm Machine Learning for Sentiment Analysis on the IMDB Movie Review Dataset}}
+
+\author{Anjali Kumari}
+\author{Paripelly Pritika}
+\author{Sucharitha Kamera}
+\author{Harshith Konda}
+\author{Tangirala Dhanunjaya Rao}
+\affil{Data Speaks!! Course Assignment}
+\date{}
 
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
-This project explores the capacity of machine learning models to decode the underlying sentiment and exact user ratings from natural language text, utilizing the Large Movie Review Dataset (IMDB). Processing over 100,000 highly polarized and unlabelled textual reviews, the project constructs a robust end-to-end data pipeline. The methodology is structured across three distinct learning paradigms: Binary Classification, Continuous Regression, and Unsupervised Clustering. 
+\section*{Project Overview}
+The ``Data Speaks!!'' project explores the capacity of machine learning architectures to decode human sentiment and predict exact user ratings from unstructured natural language text. Utilizing the Large Movie Review Dataset (IMDB), the project tests the limitations of traditional statistical models against modern Deep Learning mechanisms across multiple learning paradigms. 
 
-For Binary Classification (Positive vs. Negative), models range from traditional Multinomial Naive Bayes and Logistic Regression baselines to advanced Bidirectional LSTMs and a fine-tuned BERT Transformer, which achieved a peak accuracy of 94.16\%. Transitioning to a more granular metric, Continuous Regression predicts the precise 1-10 rating score utilizing TF-IDF with XGBoost, and MSE-optimized Deep Learning architectures (LSTM and BERT). Finally, high-dimensional text data is compressed via Truncated Singular Value Decomposition (SVD), paving the way for unsupervised structure discovery using Lexicon scoring, with pending integration of K-Means and Gaussian Mixture Models (GMM).
+\section*{Dataset Engineering and EDA}
+To satisfy the multi-paradigm requirements, 100,000 raw text files were systematically parsed into three structured datasets:
+\begin{itemize}
+    \item \textbf{Binary Classification (50,000 reviews)}: Extracted from explicitly labeled positive and negative folders, creating a perfectly balanced dataset.
+    \item \textbf{Continuous Regression (50,000 reviews)}: Derived by extracting the exact 1--10 numerical ratings embedded within the raw filename metadata.
+    \item \textbf{Unsupervised (50,000 reviews)}: Extracted from unlabelled directories to serve as a blind clustering sandbox.
+\end{itemize}
 
-The findings demonstrate a clear correlation between a model's contextual awareness and its predictive power, particularly emphasizing how mechanisms like self-attention in Transformers effectively overcome the limitations of independence assumptions in traditional statistical models. Furthermore, extensive Exploratory Data Analysis reveals strong secondary predictors, such as punctuation density and review length, which correlate heavily with extreme sentiment.
-\end{abstract}
+Extensive Exploratory Data Analysis (EDA) revealed key meta-features:
+\begin{itemize}
+    \item Bigrams (e.g., ``highly recommend'') were exponentially more discriminative than generic unigrams (stopwords).
+    \item A U-shaped distribution in review length indicated that polarized opinions (1-star and 10-star) motivate significantly longer reviews than moderate opinions.
+    \item Punctuation density (exclamation marks, capitalization) heavily correlated with 1-star negative sentiment.
+\end{itemize}
+
+\section*{Methodologies and Key Results}
+
+\textbf{Binary Classification:} The project evaluated the predictive power of four models on the binary positive/negative task. Naive Bayes achieved 84.20\% accuracy, and Logistic Regression achieved 88.22\%. To capture sequential language dependencies, a Bidirectional LSTM was implemented (87.78\%). Ultimately, by leveraging bidirectional self-attention, a fine-tuned BERT model achieved state-of-the-art \textbf{94.16\% accuracy}.
+
+\vspace{1em}
+\noindent
+\textbf{Continuous Regression:} Mapping text to an exact 1--10 numerical rating was evaluated using three models adapted with Mean Squared Error (MSE) objective functions. An XGBoost model on TF-IDF features yielded a Mean Absolute Error (MAE) of 2.1612. An LSTM model improved this to 1.5477. However, the BERT Regression model significantly outperformed both, achieving an MAE of \textbf{0.9897} (R$^2$ = 0.8154). This implies BERT can predict a user's exact rating within roughly one single point based solely on the textual review.
+
+\vspace{1em}
+\noindent
+\textbf{Dimensionality Reduction and Clustering:} To fulfill unsupervised requirements, Truncated SVD was used to compress 5,000-dimensional sparse TF-IDF vectors into 2 Principal Components, validating spatial separation between positive and negative linguistic profiles. Two distinct K-Means clustering approaches (including the dedicated \texttt{Sentiment\_Analysis\_}\allowbreak\texttt{KMeans1.ipynb} pipeline) were explored to group the 50,000 unlabelled reviews topically, minimizing within-cluster spatial distances to discover natural latent sentiment groupings. Gaussian Mixture Models (GMM) were then applied as a probabilistic alternative, identifying overlapping soft-cluster sentiment profiles.
+
+\section*{Summary}
+Contextual understanding (BERT) drastically outperforms bag-of-words approaches (TF-IDF) across both classification and regression paradigms. Furthermore, analyzing user writing style (length, punctuation) provides immense secondary predictive value. All analytical findings and interactive models were ultimately integrated into a responsive web application to disseminate these insights.
 
 \end{document}

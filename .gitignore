@@ -13,3 +13,17 @@ __pycache__/
 .ipynb_checkpoints/
 
 scratch/  
+
+# Raw Datasets
+aclImdb/
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.bbl
+*.blg
