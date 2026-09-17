@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\geometry{a4paper, margin=1in}
+
+\title{\textbf{Data Speaks!! -- Full Project Report}}
+\author{Data Speaks Project Team}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+This report details the comprehensive machine learning pipeline designed to decode sentiment and continuous ratings from the Large Movie Review Dataset (IMDB). The project spans three major machine learning paradigms:
+\begin{enumerate}
+    \item \textbf{Binary Classification}: Predicting Positive (1) vs. Negative (0) sentiment.
+    \item \textbf{Continuous Regression}: Predicting the exact rating (1-10) using advanced Transformer adaptation.
+    \item \textbf{Unsupervised Learning}: Identifying latent structures via Dimensionality Reduction, K-Means, and Gaussian Mixture Models (GMM).
+\end{enumerate}
+
+\section{Exploratory Data Analysis (EDA)}
+Extensive EDA on all 100,000 reviews revealed critical meta-features:
+\begin{itemize}
+    \item \textbf{N-Grams}: Unigrams alone fail to capture negation. Bigrams like ``worst movie'' are strong predictive indicators.
+    \item \textbf{Punctuation Correlation}: A regression analysis indicated that extreme sentiment (1-star and 10-star reviews) utilizes significantly more punctuation and capitalization than moderate reviews.
+\end{itemize}
+
+\section{Methodology: Classification Models}
+
+\subsection{Traditional Statistical Methods}
+\textbf{Multinomial Naive Bayes} yielded an accuracy of 84.20\%. It relies heavily on word frequencies but fails on syntax due to the conditional independence assumption. \textbf{Logistic Regression}, employing L2 regularization and TF-IDF vectorization, improved accuracy to 89.5\%. The TF-IDF equation is given by:
+\begin{equation}
+    \text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \log\left(\frac{N}{|\{d \in D : t \in d\}|}\right)
+\end{equation}
+
+\subsection{Deep Learning Architectures}
+\textbf{Bidirectional LSTM}: By utilizing memory gates, the LSTM reads text forward and backward, capturing temporal dependencies. The hidden state update in an LSTM is defined as:
+\begin{equation}
+    h_t = o_t \odot \tanh(c_t)
+\end{equation}
+The LSTM achieved 87.78\% accuracy, successfully modeling syntax without manual feature engineering.
+
+\textbf{BERT (Transformer)}: Fine-tuning \texttt{bert-base-uncased} provided our highest classification accuracy (94.16\%). The self-attention mechanism allowed BERT to contextually weigh every word against all others simultaneously:
+\begin{equation}
+    \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\end{equation}
+
+\section{Methodology: Continuous Regression}
+Moving beyond binary classification, we tackled the task of predicting the exact 1-10 rating. We adapted the BERT architecture for regression by replacing the standard classification layer with a single linear output node. The model was optimized using Mean Squared Error (MSE):
+\begin{equation}
+    \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\end{equation}
+This approach successfully penalized large rating deviations far more heavily than minor errors (e.g., predicting 2 when the truth is 9).
+
+\section{Unsupervised Learning and Clustering}
+To discover hidden thematic patterns without labels, we employed multiple unsupervised techniques.
+
+\subsection{Dimensionality Reduction}
+Text data vectorized by TF-IDF results in thousands of dimensions. We utilized \textbf{Truncated Singular Value Decomposition (SVD)} to project this high-dimensional space into 2D for visualization. SVD factorizes the term-document matrix $A$:
+\begin{equation}
+    A \approx U_k \Sigma_k V_k^T
+\end{equation}
+
+\subsection{Clustering (K-Means and GMM)}
+Building upon the reduced feature space, we applied advanced clustering algorithms to the 50,000 unlabelled reviews:
+\begin{itemize}
+    \item \textbf{K-Means Clustering}: To partition the reviews into discrete $k$ latent topics based on Euclidean distance centroids.
+    \item \textbf{Gaussian Mixture Models (GMM)}: To provide soft-clustering probabilistic assignments, accounting for overlapping vocabularies (e.g., a review expressing mixed sentiments). 
+\end{itemize}
+
+\section{Conclusion}
+This project successfully demonstrates the evolution of NLP capabilities. While traditional statistical models like Logistic Regression provide fast, interpretable baselines, Transformer architectures like BERT definitively prove that understanding deep, bidirectional context is necessary for highly accurate sentiment classification and nuanced regression predictions. The addition of unsupervised techniques (SVD, K-Means, GMM) completes the pipeline by illuminating the dataset's hidden structure.
+
+\end{document}

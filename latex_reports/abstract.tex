@@ -1,0 +1,24 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{\textbf{Abstract: Decoding Sentiment with Machine Learning}}
+\author{Data Speaks Project Team}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This project investigates the application of traditional machine learning and state-of-the-art deep learning architectures to natural language processing (NLP) tasks using the Large Movie Review Dataset (IMDB). The overarching objective is to build robust, scalable pipelines capable of predicting binary sentiment (positive vs. negative), predicting exact continuous rating scores (regression), and clustering unlabelled textual data. 
+
+We systematically compare baseline statistical models (Multinomial Naive Bayes, Logistic Regression) against complex neural network architectures, specifically Bidirectional Long Short-Term Memory (LSTM) networks and the BERT (Bidirectional Encoder Representations from Transformers) model. Our results demonstrate the limitations of word-frequency-based models in handling sarcasm and complex syntactic dependencies, contrasting with the superior contextual understanding of self-attention mechanisms in Transformer architectures. 
+
+To bridge the gap between classification and nuanced rating predictions, we adapt the BERT architecture for continuous regression by substituting the standard classification head with a linear output utilizing Mean Squared Error (MSE) loss. Furthermore, the project extends into unsupervised learning domains. We employ Truncated Singular Value Decomposition (SVD) for high-dimensional dimensionality reduction, and integrate K-Means clustering and Gaussian Mixture Models (GMM) to uncover latent thematic groupings within completely unlabelled text. 
+
+Through rigorous data preprocessing, comprehensive Exploratory Data Analysis (EDA), and iterative model optimization, this project provides a holistic analysis of text mining capabilities, from binary polarity classification to continuous sentiment regression and latent structure discovery.
+\end{abstract}
+
+\end{document}
