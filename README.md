@@ -21,14 +21,19 @@ msd_project/
 │
 ├── docs/                      <-- 🌐 Project Website (Responsive HTML/CSS/JS)
 │
+├── processed_for_binary_classification/ <-- 💾 Cleaned CSV Data for Classification
+├── processed_for_regression/            <-- 💾 Cleaned CSV Data for Regression
+├── processed_for_clustering/            <-- 💾 Cleaned CSV Data for Clustering
+│
 ├── notebooks/                 <-- 📊 1. Data Preprocessing & EDA
 │   ├── 1_extract_binary_data.ipynb       (Extracts 0/1 labeled data)
 │   ├── 2_extract_regression_data.ipynb   (Extracts 1-10 continuous rating data)
 │   ├── 3_extract_unsupervised_data.ipynb (Extracts 50k unlabelled reviews)
 │   └── 4_COMPREHENSIVE_EDA.ipynb         (Side-by-side EDA, N-Grams, Meta-Features)
 │
-├── svd/                       <-- 📉 2. Dimensionality Reduction Task
-│   └── DIM_REDUCTION.ipynb               (Truncated SVD on TF-IDF data)
+├── dim_reduction/             <-- 📉 2. Dimensionality Reduction Task
+│   └── svd/
+│       └── DIM_REDUCTION.ipynb           (Truncated SVD on TF-IDF data)
 │
 ├── binary_classification_models/ <-- 🤖 3. Classification Models (Pos/Neg)
 │   ├── naive_bayes/           (Baseline Naive Bayes implementation)
