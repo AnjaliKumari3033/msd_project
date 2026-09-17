@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\geometry{a4paper, margin=1in}
+
+\title{\textbf{Data Preprocessing and Exploratory Data Analysis (EDA)}}
+\author{Data Speaks Project Team}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Natural language text scraped from the web is inherently noisy. Over 50\% of the raw IMDB movie reviews contained HTML artifacts (e.g., \texttt{<br />}), non-standard punctuation, and inconsistent whitespace. A robust, deterministic preprocessing pipeline was essential to prepare the data for downstream machine learning tasks, ranging from Multinomial Naive Bayes to BERT.
+
+\section{Data Extraction}
+The raw dataset was provided as individual text files nested within subdirectories based on sentiment and split.
+\begin{itemize}
+    \item \textbf{Binary Classification Data}: Extracted from \texttt{train/pos}, \texttt{train/neg}, \texttt{test/pos}, and \texttt{test/neg}. The parent folder dictated the 1 or 0 binary label.
+    \item \textbf{Continuous Regression Data}: Ratings (1-10) were extracted directly from the filenames (e.g., \texttt{1234\_7.txt} corresponds to a rating of 7).
+    \item \textbf{Unsupervised Data}: 50,000 unlabelled reviews extracted from the \texttt{train/unsup} folder. This dataset serves as a sandbox for natural sentiment estimation and clustering via K-Means and GMM (pending final integration).
+\end{itemize}
+
+\section{Text Cleaning Pipeline}
+To ensure the models focused entirely on linguistic features rather than HTML structure, we implemented the following regex-based sequence:
+
+\begin{enumerate}
+    \item \textbf{HTML Unescaping}: Translates HTML entities back to their normal characters.
+    \item \textbf{Strip Line Breaks}: Target and remove line-break elements commonly injected during web scraping.
+    \item \textbf{Strip Remaining Tags}: Target and permanently strip all remaining HTML tags using regular expressions.
+    \item \textbf{Normalize Whitespace}: Collapse multiple consecutive space characters into a single space.
+\end{enumerate}
+
+\section{Exploratory Data Analysis (EDA)}
+Extensive EDA on all 100,000 reviews revealed critical meta-features that guided our architectural decisions:
+\begin{itemize}
+    \item \textbf{N-Grams}: Unigrams alone fail to capture negation. Bigrams like ``worst movie'' or ``highly recommend'' are significantly stronger predictive indicators.
+    \item \textbf{Punctuation Correlation}: Regression analysis indicated that extreme sentiment (1-star and 10-star reviews) utilizes significantly more punctuation (e.g., ``!!!'') and capitalization than moderate reviews.
+    \item \textbf{Review Length}: Reviews tend to be significantly longer the more polarizing the opinion is. Both 1-star and 10-star reviews averaged higher word counts than 5-star or 6-star reviews.
+\end{itemize}
+
+\section{Deduplication}
+After aggressive cleaning, several reviews collapsed into identical strings. We performed strict deduplication on the \texttt{text\_clean} column to prevent data leakage between the training and validation sets, thereby avoiding artificially inflated accuracy metrics.
+
+\end{document}

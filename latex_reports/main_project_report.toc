@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{}%
+\contentsline {section}{\numberline {2}Methodology: Binary Classification Models}{2}{}%
+\contentsline {subsection}{\numberline {2.1}Traditional Statistical Methods}{2}{}%
+\contentsline {subsection}{\numberline {2.2}Bidirectional LSTM}{2}{}%
+\contentsline {subsection}{\numberline {2.3}BERT Classification (Transformer)}{2}{}%
+\contentsline {section}{\numberline {3}Methodology: Continuous Regression Models}{3}{}%
+\contentsline {subsection}{\numberline {3.1}XGBoost Regression}{3}{}%
+\contentsline {subsection}{\numberline {3.2}Attention-Augmented LSTM}{3}{}%
+\contentsline {subsection}{\numberline {3.3}BERT Regression}{3}{}%
+\contentsline {section}{\numberline {4}Dimensionality Reduction}{3}{}%
+\contentsline {section}{\numberline {5}Unsupervised Clustering (Results Pending Integration)}{3}{}%
+\contentsline {section}{\numberline {6}Conclusions}{4}{}%

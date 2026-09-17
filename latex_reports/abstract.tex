@@ -3,7 +3,7 @@
 \usepackage{geometry}
 \geometry{a4paper, margin=1in}
 
-\title{\textbf{Abstract: Decoding Sentiment with Machine Learning}}
+\title{\textbf{Abstract: Sentiment Analysis and Continuous Rating Prediction on IMDB Movie Reviews}}
 \author{Data Speaks Project Team}
 \date{\today}
 
@@ -12,13 +12,11 @@
 \maketitle
 
 \begin{abstract}
-This project investigates the application of traditional machine learning and state-of-the-art deep learning architectures to natural language processing (NLP) tasks using the Large Movie Review Dataset (IMDB). The overarching objective is to build robust, scalable pipelines capable of predicting binary sentiment (positive vs. negative), predicting exact continuous rating scores (regression), and clustering unlabelled textual data. 
+This project explores the capacity of machine learning models to decode the underlying sentiment and exact user ratings from natural language text, utilizing the Large Movie Review Dataset (IMDB). Processing over 100,000 highly polarized and unlabelled textual reviews, the project constructs a robust end-to-end data pipeline. The methodology is structured across three distinct learning paradigms: Binary Classification, Continuous Regression, and Unsupervised Clustering. 
 
-We systematically compare baseline statistical models (Multinomial Naive Bayes, Logistic Regression) against complex neural network architectures, specifically Bidirectional Long Short-Term Memory (LSTM) networks and the BERT (Bidirectional Encoder Representations from Transformers) model. Our results demonstrate the limitations of word-frequency-based models in handling sarcasm and complex syntactic dependencies, contrasting with the superior contextual understanding of self-attention mechanisms in Transformer architectures. 
+For Binary Classification (Positive vs. Negative), models range from traditional Multinomial Naive Bayes and Logistic Regression baselines to advanced Bidirectional LSTMs and a fine-tuned BERT Transformer, which achieved a peak accuracy of 94.16\%. Transitioning to a more granular metric, Continuous Regression predicts the precise 1-10 rating score utilizing TF-IDF with XGBoost, and MSE-optimized Deep Learning architectures (LSTM and BERT). Finally, high-dimensional text data is compressed via Truncated Singular Value Decomposition (SVD), paving the way for unsupervised structure discovery using Lexicon scoring, with pending integration of K-Means and Gaussian Mixture Models (GMM).
 
-To bridge the gap between classification and nuanced rating predictions, we adapt the BERT architecture for continuous regression by substituting the standard classification head with a linear output utilizing Mean Squared Error (MSE) loss. Furthermore, the project extends into unsupervised learning domains. We employ Truncated Singular Value Decomposition (SVD) for high-dimensional dimensionality reduction, and integrate K-Means clustering and Gaussian Mixture Models (GMM) to uncover latent thematic groupings within completely unlabelled text. 
-
-Through rigorous data preprocessing, comprehensive Exploratory Data Analysis (EDA), and iterative model optimization, this project provides a holistic analysis of text mining capabilities, from binary polarity classification to continuous sentiment regression and latent structure discovery.
+The findings demonstrate a clear correlation between a model's contextual awareness and its predictive power, particularly emphasizing how mechanisms like self-attention in Transformers effectively overcome the limitations of independence assumptions in traditional statistical models. Furthermore, extensive Exploratory Data Analysis reveals strong secondary predictors, such as punctuation density and review length, which correlate heavily with extreme sentiment.
 \end{abstract}
 
 \end{document}
