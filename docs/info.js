@@ -39,6 +39,11 @@ var team_info = {
             bio: "Led overall project orchestration and spearheaded BERT transformer fine-tuning for both binary classification (94.16% accuracy) and continuous regression (0.9897 MAE)."
         },
         {
+            name: "Tangirala Dhanunjaya Rao",
+            role: "Team Member",
+            bio: "Designed and trained the PyTorch Bidirectional LSTM neural networks, performed continuous regression residual analysis, and built the responsive web application dashboard."
+        },
+        {
             name: "Paripelly Pritika",
             role: "Team Member",
             bio: "Architected the automated data extraction pipelines parsing 100,000 raw text files, regex sanitization, deduplication, and comparative EDA distribution analysis."
@@ -52,11 +57,6 @@ var team_info = {
             name: "Harshith Konda",
             role: "Team Member",
             bio: "Implemented Truncated SVD dimensionality reduction, K-Means clustering optimization via the Elbow method, and Gaussian Mixture Models (GMM) for soft-clustering mixed reviews."
-        },
-        {
-            name: "Tangirala Dhanunjaya Rao",
-            role: "Team Member",
-            bio: "Designed and trained the PyTorch Bidirectional LSTM neural networks, performed continuous regression residual analysis, and built the responsive web application dashboard."
         }
     ]
 };
