@@ -35,27 +35,27 @@ var team_info = {
     team_members: [
         {
             name: "Anjali Kumari",
-            role: "Project Lead & Deep Learning Architect",
+            role: "Project Lead",
             bio: "Led overall project orchestration and spearheaded BERT transformer fine-tuning for both binary classification (94.16% accuracy) and continuous regression (0.9897 MAE)."
         },
         {
             name: "Paripelly Pritika",
-            role: "Data Engineering & Preprocessing Lead",
+            role: "Team Member",
             bio: "Architected the automated data extraction pipelines parsing 100,000 raw text files, regex sanitization, deduplication, and comparative EDA distribution analysis."
         },
         {
             name: "Sucharitha Kamera",
-            role: "Statistical Modeling Specialist",
+            role: "Team Member",
             bio: "Developed baseline statistical classifiers including Multinomial Naive Bayes and engineered TF-IDF n-gram vectorization pipelines with L2-regularized Logistic Regression."
         },
         {
             name: "Harshith Konda",
-            role: "Unsupervised Learning & SVD Specialist",
+            role: "Team Member",
             bio: "Implemented Truncated SVD dimensionality reduction, K-Means clustering optimization via the Elbow method, and Gaussian Mixture Models (GMM) for soft-clustering mixed reviews."
         },
         {
             name: "Tangirala Dhanunjaya Rao",
-            role: "Neural Sequence Architect & Web Developer",
+            role: "Team Member",
             bio: "Designed and trained the PyTorch Bidirectional LSTM neural networks, performed continuous regression residual analysis, and built the responsive web application dashboard."
         }
     ]
