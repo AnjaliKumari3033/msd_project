@@ -157,7 +157,7 @@
         .index-strip {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
-            padding: 12px 0;
+            padding: 10px 0;
             position: sticky;
             top: 57px;
             z-index: 90;
@@ -165,14 +165,14 @@
 
         .index-strip-inner {
             display: flex;
-            gap: 24px;
-            overflow-x: auto;
-            white-space: nowrap;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px 22px;
         }
 
         .index-link {
             font-family: var(--font-mono);
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: var(--text-muted);
@@ -504,12 +504,12 @@
     <!-- Index Jump Strip -->
     <div class="index-strip">
         <div class="container index-strip-inner">
-            <a href="#summary" class="index-link">[Summary]</a>
-            <a href="#classification" class="index-link">[01 Binary Classification]</a>
-            <a href="#regression" class="index-link">[02 Continuous Regression]</a>
-            <a href="#unsupervised" class="index-link">[03 Latent Geometry &amp; SVD]</a>
-            <a href="#eda" class="index-link">[04 Exploratory Plates]</a>
-            <a href="#anomalies" class="index-link">[05 Behavioral Anomalies]</a>
+            <a href="#summary" class="index-link">[Overview]</a>
+            <a href="#classification" class="index-link">[01 Classification]</a>
+            <a href="#regression" class="index-link">[02 Regression]</a>
+            <a href="#unsupervised" class="index-link">[03 SVD &amp; Clustering]</a>
+            <a href="#eda" class="index-link">[04 EDA Figures]</a>
+            <a href="#anomalies" class="index-link">[05 Anomalies]</a>
         </div>
     </div>
 
