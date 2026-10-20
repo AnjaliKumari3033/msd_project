@@ -3,91 +3,734 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Speaks | IMDB Sentiment Analysis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Project Overview & Problem Statement | Data Speaks!! Team 13</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="info.js"></script>
+    <style>
+        :root {
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-dark: #0f172a;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eef2ff;
+            --accent-cyan: #0284c7;
+            --accent-emerald: #059669;
+            --accent-amber: #d97706;
+            --accent-rose: #e11d48;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.03);
+            --radius-lg: 14px;
+            --radius-md: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+        }
+
+        .brand-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .team-pill {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid #c7d2fe;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-tabs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-tab-link {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 18px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-tab-link:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .nav-tab-link.active {
+            color: #ffffff;
+            background: var(--primary);
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-page) 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 56px 0 48px 0;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #eef2ff;
+            color: #4338ca;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            border: 1px solid #c7d2fe;
+        }
+
+        .hero-title {
+            font-size: 2.85rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #4f46e5 0%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 860px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* Project Metadata Tile */
+        .project-tile {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            box-shadow: var(--shadow-sm);
+            margin-top: 24px;
+        }
+
+        .tile-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .tile-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .tile-value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .tile-value.highlight {
+            color: var(--primary);
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 48px 0;
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 820px;
+        }
+
+        /* Card System */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header-styled {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .badge-primary { background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; }
+        .badge-cyan { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+        .badge-emerald { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+        .badge-amber { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 24px;
+        }
+
+        /* Problem Statement Highlight Box */
+        .ps-callout {
+            background: linear-gradient(135deg, #eef2ff 0%, #f0fdfa 100%);
+            border: 1px solid #c7d2fe;
+            border-left: 6px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            margin: 24px 0;
+        }
+
+        .ps-callout h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e1b4b;
+            margin-bottom: 10px;
+        }
+
+        .ps-callout p {
+            color: #312e81;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Pipeline Steps */
+        .pipeline-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .pipeline-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            padding: 18px 20px;
+            background: var(--bg-page);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .pipeline-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.95rem;
+        }
+
+        .pipeline-content h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .pipeline-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Navigation Button Row */
+        .nav-cta-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 36px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cta-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+        }
+
+        .btn-cta-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.45);
+        }
+
+        .btn-cta-secondary {
+            background: white;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-cta-secondary:hover {
+            border-color: #cbd5e1;
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: #94a3b8;
+            padding: 36px 0;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            font-size: 0.95rem;
+            margin-top: 60px;
+        }
+
+        .footer a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            color: #38bdf8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 14px;
+            }
+            .hero-title {
+                font-size: 2.1rem;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+
+    <!-- Top Navigation Bar -->
     <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Data Speaks.</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="eda.html">EDA</a></li>
-                <li><a href="model-naivebayes.html">Naive Bayes</a></li>
-                <li><a href="model-logistic.html">Logistic</a></li>
-                <li><a href="model-lstm.html">LSTM</a></li>
-                <li><a href="model-bert.html">BERT</a></li>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="brand-logo">DS</div>
+                <div>
+                    <span class="brand-text">Data Speaks!!</span>
+                    <span class="team-pill team-name">Team 13</span>
+                </div>
+            </a>
+            <ul class="nav-tabs">
+                <li><a href="index.html" class="nav-tab-link active">📌 Project (PS)</a></li>
+                <li><a href="results.html" class="nav-tab-link">📊 Results</a></li>
+                <li><a href="team.html" class="nav-tab-link">👥 Team</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Hero Header -->
     <header class="hero">
         <div class="container">
-            <h1 class="hero-title">Decoding Sentiment with ML</h1>
-            <p class="hero-subtitle">Comparing Traditional Algorithms and Deep Learning architectures on the IMDB Movie Review Dataset.</p>
-        </div>
-    </header>
+            <div class="hero-badge">🎓 MDS Project Course Assignment &bull; Full Deliverable</div>
+            <h1 class="hero-title">Sentiment Analysis &amp; Rating Prediction<br><span>on IMDB Movie Reviews</span></h1>
+            <p class="hero-subtitle">
+                A multi-paradigm machine learning framework investigating whether statistical models, recurrent neural networks, and transformer architectures can decode human emotion and predict continuous 1&ndash;10 user ratings from unstructured text.
+            </p>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Model Performance Comparison</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="card" style="max-width: 800px; margin: 0 auto;">
-                <h3>Test Set Accuracy</h3>
-                <div class="bar-chart">
-                    <div class="bar-row">
-                        <div class="bar-label">Naive Bayes</div>
-                        <div class="bar-container"><div class="bar-fill" style="width: 0%; background: #0d9488;" data-width="84.2%">84.2%</div></div>
-                    </div>
-                    <div class="bar-row">
-                        <div class="bar-label">Logistic Regression</div>
-                        <div class="bar-container"><div class="bar-fill" style="width: 0%; background: #334155;" data-width="89.5%">89.5%</div></div>
-                    </div>
-                    <div class="bar-row">
-                        <div class="bar-label">Bi-LSTM</div>
-                        <div class="bar-container"><div class="bar-fill" style="width: 0%; background: #2563eb;" data-width="87.8%">87.8%</div></div>
-                    </div>
-                    <div class="bar-row">
-                        <div class="bar-label">BERT</div>
-                        <div class="bar-container"><div class="bar-fill" style="width: 0%; background: #0f172a;" data-width="94.2%">94.2%</div></div>
-                    </div>
+            <!-- Project Tile -->
+            <div class="project-tile">
+                <div class="tile-item">
+                    <span class="tile-label">Project Title</span>
+                    <span class="tile-value project-title">Data Speaks!! - Sentiment Analysis & Rating Prediction</span>
+                </div>
+                <div class="tile-item">
+                    <span class="tile-label">Team Designation</span>
+                    <span class="tile-value highlight team-name">Team 13</span>
+                </div>
+                <div class="tile-item">
+                    <span class="tile-label">Benchmark Dataset</span>
+                    <span class="tile-value">IMDB Large Movie Reviews (100,000 samples)</span>
+                </div>
+                <div class="tile-item">
+                    <span class="tile-label">Peak Performance</span>
+                    <span class="tile-value highlight">94.16% Acc &bull; 0.9897 MAE</span>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section class="section bg-light">
-        <div class="container">
+    <main class="container">
+        
+        <!-- SECTION 1: PROBLEM STATEMENT -->
+        <section class="section">
             <div class="section-header">
-                <h2>Explore the Project</h2>
-                <div class="divider"></div>
+                <div class="section-tag">Core Foundation</div>
+                <h2 class="section-title">1. Problem Statement (PS) &amp; Research Topic</h2>
+                <p class="section-desc">
+                    Sentiment analysis is one of the most critical and challenging tasks in Natural Language Processing (NLP). This project formulates sentiment understanding beyond simple polarity into a comprehensive multi-paradigm study.
+                </p>
             </div>
-            <div class="grid-4">
-                <a href="eda.html" class="card text-center">
-                    <h3>EDA</h3>
-                    <p>Text Cleaning & Dimensionality Reduction</p>
+
+            <div class="ps-callout">
+                <h3>The Central Research Question</h3>
+                <p>
+                    <strong>How accurately can machine learning algorithms infer human sentiment and predict exact numerical star ratings from unstructured natural language text, and where do traditional statistical boundaries fail compared to contextual Deep Learning architectures?</strong>
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-header-styled">
+                    <h3 class="card-title">Why Natural Language Sentiment is Difficult</h3>
+                    <span class="badge badge-amber">NLP Complexity</span>
+                </div>
+                <p>
+                    Analyzing raw movie reviews introduces severe real-world linguistics challenges that break simplistic word-matching systems:
+                </p>
+                <div class="grid-3" style="margin-top: 16px;">
+                    <div style="background: var(--bg-page); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border);">
+                        <h4 style="color: var(--primary); margin-bottom: 6px;">1. Negation &amp; Sarcasm</h4>
+                        <p style="font-size: 0.95rem; margin: 0; color: var(--text-secondary);">
+                            Phrases like <em>"not bad at all"</em>, <em>"this movie was anything but boring"</em>, or sarcastic praise (<em>"A true masterpiece of terrible directing"</em>) fool unigram models because individual negative words appear in positive contexts and vice-versa.
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-page); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border);">
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">2. Fine-Grained Rating Nuance</h4>
+                        <p style="font-size: 0.95rem; margin: 0; color: var(--text-secondary);">
+                            Moving from binary (positive/negative) to continuous 1–10 regression requires decoding subtle adjective intensifiers—distinguishing between a "7/10" review (<em>"pretty solid"</em>) and an "8/10" review (<em>"incredibly gripping"</em>).
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-page); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border);">
+                        <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">3. Length &amp; Sparsity Variance</h4>
+                        <p style="font-size: 0.95rem; margin: 0; color: var(--text-secondary);">
+                            Review lengths span from 32 characters to over 13,700 characters. Bag-of-words representations generate high-dimensional sparse matrices exceeding 80,000 dimensions with over 99% zero entries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Three Paradigms -->
+            <div class="card">
+                <div class="card-header-styled">
+                    <h3 class="card-title">The Three Machine Learning Paradigms Investigated</h3>
+                    <span class="badge badge-primary">Comprehensive Scope</span>
+                </div>
+                <div class="grid-3">
+                    <div style="border-left: 4px solid var(--primary); padding-left: 16px;">
+                        <h4 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 6px;">Paradigm 1: Binary Classification</h4>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary);">
+                            Classifying text strictly into Positive (1) or Negative (0). Evaluated using <strong>Multinomial Naive Bayes</strong>, <strong>Logistic Regression</strong>, <strong>Bidirectional LSTM</strong>, and fine-tuned <strong>BERT</strong>.
+                        </p>
+                    </div>
+                    <div style="border-left: 4px solid var(--accent-cyan); padding-left: 16px;">
+                        <h4 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 6px;">Paradigm 2: Continuous Regression</h4>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary);">
+                            Predicting the exact continuous 1–10 star score. Formulated with Mean Squared Error (MSE) loss using <strong>XGBoost Regressor</strong>, <strong>LSTM Regressor</strong>, and <strong>BERT Continuous Regressor</strong>.
+                        </p>
+                    </div>
+                    <div style="border-left: 4px solid var(--accent-emerald); padding-left: 16px;">
+                        <h4 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 6px;">Paradigm 3: Unsupervised Clustering</h4>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary);">
+                            Discovering natural latent sentiment profiles in completely unlabelled text using <strong>Truncated SVD</strong> dimensionality reduction, <strong>K-Means Clustering</strong>, and <strong>Gaussian Mixture Models (GMM)</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: DATASET ENGINEERING -->
+        <section class="section" style="padding-top: 0;">
+            <div class="section-header">
+                <div class="section-tag">Data Engineering</div>
+                <h2 class="section-title">2. Dataset Engineering &amp; Sourcing</h2>
+                <p class="section-desc">
+                    The project builds upon the benchmark Large Movie Review Dataset (IMDB) comprising 100,000 text reviews, systematically partitioned into three dedicated research subsets.
+                </p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-header-styled">
+                        <h4 style="margin: 0; font-size: 1.15rem;">Binary Classification Data</h4>
+                        <span class="badge badge-primary">50,000 Samples</span>
+                    </div>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary);">
+                        Extracted strictly from the <code>pos</code> and <code>neg</code> subdirectories. Labels (1 = positive, 0 = negative) were derived from directory structure.
+                    </p>
+                    <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">
+                        <li><strong>Training split:</strong> 25,000 reviews (12,500 pos / 12,500 neg)</li>
+                        <li><strong>Testing split:</strong> 25,000 reviews (12,500 pos / 12,500 neg)</li>
+                        <li><strong>Balance:</strong> Perfectly 50/50 balanced to prevent bias</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-styled">
+                        <h4 style="margin: 0; font-size: 1.15rem;">Continuous Regression Data</h4>
+                        <span class="badge badge-cyan">50,000 Samples</span>
+                    </div>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary);">
+                        Engineered by parsing the exact 1–10 numerical rating score embedded in the raw filename metadata (e.g., <code>1234_7.txt</code> &rarr; rating = 7).
+                    </p>
+                    <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">
+                        <li><strong>Target Space:</strong> Exact continuous float / integer [1.0 &ndash; 10.0]</li>
+                        <li><strong>Distribution:</strong> Bimodal U-shaped rating curves</li>
+                        <li><strong>Objective:</strong> Minimizing Mean Absolute &amp; Squared Error</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-styled">
+                        <h4 style="margin: 0; font-size: 1.15rem;">Unsupervised Clustering Data</h4>
+                        <span class="badge badge-emerald">50,000 Samples</span>
+                    </div>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary);">
+                        Extracted from the <code>train/unsup</code> directory, stripped of all sentiment labels and filename rating metadata.
+                    </p>
+                    <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">
+                        <li><strong>Target Space:</strong> Completely unlabelled text</li>
+                        <li><strong>Purpose:</strong> Unsupervised semantic discovery sandbox</li>
+                        <li><strong>Algorithms:</strong> Truncated SVD, K-Means, and GMM</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PREPROCESSING PIPELINE -->
+        <section class="section" style="padding-top: 0;">
+            <div class="section-header">
+                <div class="section-tag">Text Normalization</div>
+                <h2 class="section-title">3. Data Cleaning &amp; Feature Preprocessing Pipeline</h2>
+                <p class="section-desc">
+                    Raw web-scraped reviews were heavily contaminated with HTML artifacts. An initial data audit revealed HTML tags in over 58% of reviews and duplicate submissions. We implemented a strict, deterministic cleaning sequence.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="pipeline-list">
+                    <div class="pipeline-item">
+                        <div class="pipeline-num">1</div>
+                        <div class="pipeline-content">
+                            <h4>HTML Entity Unescaping</h4>
+                            <p>Used Python's <code>html.unescape()</code> to translate encoded entities (such as <code>&amp;amp;</code> &rarr; <code>&amp;</code>, <code>&amp;quot;</code> &rarr; <code>"</code>) back to their genuine ASCII character equivalents, restoring true reviewer intent.</p>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-item">
+                        <div class="pipeline-num">2</div>
+                        <div class="pipeline-content">
+                            <h4>Regex HTML Tag Stripping</h4>
+                            <p>Over 58.7% of training reviews contained <code>&lt;br /&gt;</code> breaks and embedded HTML elements. Regular expressions (<code>&lt;br\s*/?&gt;</code> and <code>&lt;[^&gt;]+&gt;</code>) stripped structural tags to ensure models learn natural semantics rather than HTML scraping artifacts.</p>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-item">
+                        <div class="pipeline-num">3</div>
+                        <div class="pipeline-content">
+                            <h4>Whitespace &amp; Encoding Normalization</h4>
+                            <p>Multiple consecutive spaces, non-breaking spaces, and hidden carriage returns were collapsed into uniform single spaces, preventing identical tokens from splitting due to invisible formatting.</p>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-item">
+                        <div class="pipeline-num">4</div>
+                        <div class="pipeline-content">
+                            <h4>Deduplication (Preventing Data Leakage)</h4>
+                            <p>A rigorous audit identified duplicate reviews resulting from automated crawler scraping. We permanently removed 96 duplicate entries from the training set and 199 from the test set, eliminating sample memorization and data leakage between splits.</p>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-item">
+                        <div class="pipeline-num">5</div>
+                        <div class="pipeline-content">
+                            <h4>Dual Architecture-Specific Vectorization</h4>
+                            <p>Because algorithms cannot digest raw strings, text was numerically vectorized along two distinct architectural branches:
+                            <br>&bull; <strong>Statistical Models (Naive Bayes, Logistic, XGBoost, SVD, K-Means):</strong> Transformed via TF-IDF with unigrams and bigrams (<code>ngram_range=(1,2)</code>) to capture phrase-level negation while penalizing generic stopwords.
+                            <br>&bull; <strong>Deep Learning &amp; Transformers (BiLSTM, BERT):</strong> Encoded into integer sequence matrices (BiLSTM) and subword WordPiece token IDs with positional attention embeddings (BERT) to retain temporal sequence and deep bidirectional context.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call-to-action button to navigate -->
+            <div class="nav-cta-row">
+                <a href="results.html" class="btn-cta btn-cta-primary">
+                    View Comprehensive Results &amp; Graphs &rarr;
                 </a>
-                <a href="model-naivebayes.html" class="card text-center">
-                    <h3>Naive Bayes</h3>
-                    <p>Baseline Classification Model</p>
-                </a>
-                <a href="model-lstm.html" class="card text-center">
-                    <h3>LSTM</h3>
-                    <p>Recurrent Neural Network</p>
-                </a>
-                <a href="model-bert.html" class="card text-center">
-                    <h3>BERT</h3>
-                    <p>State-of-the-art Transformer</p>
+                <a href="team.html" class="btn-cta btn-cta-secondary">
+                    Meet Team 13 &rarr;
                 </a>
             </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="margin-bottom: 8px;"><strong>Data Speaks!! &bull; Team 13</strong> &mdash; MDS Course Project</p>
+            <p style="font-size: 0.85rem; color: #64748b;">
+                Authors: Anjali Kumari &bull; Paripelly Pritika &bull; Sucharitha Kamera &bull; Harshith Konda &bull; Tangirala Dhanunjaya Rao
+            </p>
+            <p style="font-size: 0.8rem; margin-top: 12px; color: #475569;">
+                Navigation: <a href="index.html">Project (PS)</a> &bull; <a href="results.html">Results &amp; Graphs</a> &bull; <a href="team.html">Team Members</a>
+            </p>
         </div>
-    </section>
-    
-    <footer class="footer"><div class="container"><p>&copy; 2026 Data Speaks Team.</p></div></footer>
-    <script src="js/script.js"></script>
+    </footer>
+
 </body>
 </html>

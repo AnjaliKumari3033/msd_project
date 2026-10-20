@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Results, Graphs & Anomalies | Data Speaks!! Team 13</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="info.js"></script>
+    <style>
+        :root {
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-dark: #0f172a;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eef2ff;
+            --accent-cyan: #0284c7;
+            --accent-emerald: #059669;
+            --accent-amber: #d97706;
+            --accent-rose: #e11d48;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.03);
+            --radius-lg: 14px;
+            --radius-md: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+
+        .nav-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+        }
+
+        .brand-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .team-pill {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+            border: 1px solid #c7d2fe;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-tabs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-tab-link {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 18px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-tab-link:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .nav-tab-link.active {
+            color: #ffffff;
+            background: var(--primary);
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+        }
+
+        /* Subnav pills for quick jumping */
+        .subnav-bar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            position: sticky;
+            top: 65px;
+            z-index: 900;
+        }
+
+        .subnav-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .subnav-pill {
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .subnav-pill:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: #c7d2fe;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .results-header {
+            padding: 44px 0 24px 0;
+        }
+
+        .results-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .results-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 880px;
+            line-height: 1.6;
+        }
+
+        /* Metric Grid Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 28px 0 48px 0;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--primary);
+            transition: all 0.2s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .kpi-card.cyan { border-top-color: var(--accent-cyan); }
+        .kpi-card.emerald { border-top-color: var(--accent-emerald); }
+        .kpi-card.amber { border-top-color: var(--accent-amber); }
+
+        .kpi-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .kpi-sub {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Section Block */
+        .results-section {
+            padding: 36px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 1.95rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 900px;
+            margin-bottom: 28px;
+        }
+
+        /* Card Layout */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 28px;
+        }
+
+        .card-header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .badge-primary { background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; }
+        .badge-cyan { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+        .badge-emerald { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+        .badge-amber { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        .badge-rose { background: #ffe4e6; color: #be123c; border: 1px solid #fecdd3; }
+
+        /* Tables */
+        .data-table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .data-table th {
+            background: #f1f5f9;
+            color: var(--text-primary);
+            font-weight: 700;
+            padding: 14px 18px;
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover td {
+            background: #f8fafc;
+        }
+
+        .data-table .highlight-row td {
+            background: #f5f3ff;
+            font-weight: 600;
+            color: #3730a3;
+        }
+
+        .val-badge {
+            display: inline-block;
+            font-weight: 700;
+            color: #1e1b4b;
+            background: #e0e7ff;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        /* Image Display Cards */
+        .image-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .image-card-body {
+            padding: 20px 24px;
+        }
+
+        .image-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .image-card-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+            gap: 24px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        /* Anomaly / Observation Cards */
+        .anomaly-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 6px solid var(--accent-amber);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .anomaly-card.rose {
+            border-left-color: var(--accent-rose);
+        }
+
+        .anomaly-card.cyan {
+            border-left-color: var(--accent-cyan);
+        }
+
+        .anomaly-card.emerald {
+            border-left-color: var(--accent-emerald);
+        }
+
+        .anomaly-card.purple {
+            border-left-color: var(--primary);
+        }
+
+        .anomaly-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .anomaly-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .anomaly-body {
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .anomaly-takeaway {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: var(--bg-page);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: #94a3b8;
+            padding: 36px 0;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            font-size: 0.95rem;
+            margin-top: 60px;
+        }
+
+        .footer a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            color: #38bdf8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 14px;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .results-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="brand-logo">DS</div>
+                <div>
+                    <span class="brand-text">Data Speaks!!</span>
+                    <span class="team-pill team-name">Team 13</span>
+                </div>
+            </a>
+            <ul class="nav-tabs">
+                <li><a href="index.html" class="nav-tab-link">📌 Project (PS)</a></li>
+                <li><a href="results.html" class="nav-tab-link active">📊 Results</a></li>
+                <li><a href="team.html" class="nav-tab-link">👥 Team</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Quick Navigation Subnav -->
+    <div class="subnav-bar">
+        <div class="subnav-container">
+            <a href="#kpi-summary" class="subnav-pill">&uarr; Overview</a>
+            <a href="#classification" class="subnav-pill">1. Classification Models (4)</a>
+            <a href="#regression" class="subnav-pill">2. Regression Models (3)</a>
+            <a href="#unsupervised" class="subnav-pill">3. Clustering &amp; SVD (3)</a>
+            <a href="#eda-visualizations" class="subnav-pill">4. Exploratory Data Analysis (7 Plots)</a>
+            <a href="#anomalies" class="subnav-pill">5. Anomalies &amp; Observations (6)</a>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="container">
+
+        <!-- Results Header -->
+        <div class="results-header" id="kpi-summary">
+            <div class="section-tag">Comprehensive Experimental Findings</div>
+            <h1 class="results-title">Project Results, Model Metrics &amp; Dataset Patterns</h1>
+            <p class="results-subtitle">
+                Complete technical evaluation across all 10 machine learning models and 3 learning paradigms, supported by confusion matrices, loss curves, dimensional projections, and empirical observations on the IMDB dataset.
+            </p>
+
+            <!-- Key Performance Indicators -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Peak Classification Accuracy</div>
+                    <div class="kpi-value">94.16%</div>
+                    <div class="kpi-sub">BERT Transformer (bert-base-uncased)</div>
+                </div>
+                <div class="kpi-card cyan">
+                    <div class="kpi-label">Lowest Continuous MAE</div>
+                    <div class="kpi-value">0.9897</div>
+                    <div class="kpi-sub">BERT Continuous Regressor (1&ndash;10 Scale)</div>
+                </div>
+                <div class="kpi-card emerald">
+                    <div class="kpi-label">Explained Rating Variance (R²)</div>
+                    <div class="kpi-value">0.8154</div>
+                    <div class="kpi-sub">Accounts for 81.5% of human variance</div>
+                </div>
+                <div class="kpi-card amber">
+                    <div class="kpi-label">SVD Dimension Compression</div>
+                    <div class="kpi-value">80,000 &rarr; 2</div>
+                    <div class="kpi-sub">Preserving 85% latent variance</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PART 1: BINARY CLASSIFICATION -->
+        <!-- ============================================================ -->
+        <section class="results-section" id="classification">
+            <div class="section-tag">Paradigm 1: Binary Sentiment</div>
+            <h2 class="section-title">1. Binary Classification: Models &amp; Full Metrics</h2>
+            <p class="section-desc">
+                We evaluated four classification architectures scaling in complexity from traditional statistical bag-of-words to bidirectional deep recurrent networks and state-of-the-art self-attention Transformers on 50,000 balanced reviews.
+            </p>
+
+            <!-- Classification Comparison Table -->
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3 class="card-title">Binary Classification Performance Matrix</h3>
+                    <span class="badge badge-primary">Test Set: 25,000 Reviews</span>
+                </div>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Model Architecture</th>
+                                <th>Feature Representation</th>
+                                <th>Test Accuracy</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1-Score</th>
+                                <th>Key Takeaway / Limitation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Multinomial Naive Bayes</strong></td>
+                                <td>Bag-of-Words (CountVectorizer)</td>
+                                <td><span class="val-badge">84.20%</span></td>
+                                <td>0.84</td>
+                                <td>0.84</td>
+                                <td>0.84</td>
+                                <td>Fast probabilistic baseline; assumes word independence, completely blind to negation &amp; sarcasm.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Logistic Regression</strong></td>
+                                <td>TF-IDF (Unigrams + Bigrams, L2 $C=1.0$)</td>
+                                <td><span class="val-badge">88.22%</span></td>
+                                <td>0.88</td>
+                                <td>0.88</td>
+                                <td>0.88</td>
+                                <td>Bigram weighting successfully captures phrase negation (e.g. <em>"not good"</em>), outperforming Naive Bayes.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bidirectional LSTM</strong></td>
+                                <td>Dense 128-dim Embeddings, 2-layer BiLSTM</td>
+                                <td><span class="val-badge">87.78%</span></td>
+                                <td>0.88</td>
+                                <td>0.88</td>
+                                <td>0.8778</td>
+                                <td>Learns grammar sequentially from scratch, but long document lengths (&gt;200 words) induce gradient saturation.</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td><strong>Fine-Tuned BERT (Transformer)</strong></td>
+                                <td>WordPiece Tokens + Positional Attention (110M params)</td>
+                                <td><span class="val-badge" style="background:#4338ca; color:white;">94.16%</span></td>
+                                <td>0.94</td>
+                                <td>0.94</td>
+                                <td>0.94</td>
+                                <td>State-of-the-art; global bidirectional self-attention perfectly resolves long-range context and nuanced qualifiers.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Classification Plots Grid -->
+            <div class="grid-2">
+                <div class="image-card">
+                    <img src="images/bert_confusion_matrix.png" alt="BERT Confusion Matrix">
+                    <div class="image-card-body">
+                        <div class="image-card-title">BERT Classification Confusion Matrix</div>
+                        <p class="image-card-desc">
+                            The test confusion matrix confirms exceptional balance and high discriminative precision across all 25,000 unseen test samples. Both False Positives and False Negatives are minimized, delivering an unprecedented <strong>94.16% overall accuracy</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="images/lstm_confusion_matrix.png" alt="Bidirectional LSTM Confusion Matrix">
+                    <div class="image-card-body">
+                        <div class="image-card-title">Bidirectional LSTM Confusion Matrix</div>
+                        <p class="image-card-desc">
+                            The 2-layer PyTorch BiLSTM achieved robust classification (87.78% accuracy). While it accurately separates clearly polar reviews, subtle sarcasm causes slight confusion compared to Transformer self-attention.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-card" style="max-width: 800px; margin: 0 auto 36px auto;">
+                <img src="images/lstm_loss_curve.png" alt="LSTM Training & Validation Loss Curve">
+                <div class="image-card-body">
+                    <div class="image-card-title">Bidirectional LSTM Convergence &amp; Loss Curve</div>
+                    <p class="image-card-desc">
+                        Training progression over 10 epochs with early stopping on an NVIDIA GPU. Smooth Cross-Entropy convergence demonstrates stable gradient propagation without catastrophic overfitting.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- PART 2: CONTINUOUS REGRESSION -->
+        <!-- ============================================================ -->
+        <section class="results-section" id="regression">
+            <div class="section-tag">Paradigm 2: Continuous Rating</div>
+            <h2 class="section-title">2. Continuous Regression: Exact 1&ndash;10 Star Rating Prediction</h2>
+            <p class="section-desc">
+                Predicting an exact numerical score on a continuous 1.0 to 10.0 scale is fundamentally more challenging than binary polarity. Models were modified to optimize Mean Squared Error (MSE) loss, forcing text mappings into a continuous metric space.
+            </p>
+
+            <!-- Regression Comparison Table -->
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3 class="card-title">Continuous Regression Performance Comparison</h3>
+                    <span class="badge badge-cyan">Test Set: 25,000 Reviews</span>
+                </div>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Model Architecture</th>
+                                <th>Optimization Loss</th>
+                                <th>Mean Squared Error (MSE)</th>
+                                <th>Mean Absolute Error (MAE)</th>
+                                <th>Coefficient of Determination (R²)</th>
+                                <th>Average Deviation on 1&ndash;10 Scale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>XGBoost Regressor</strong></td>
+                                <td>Squared Error Loss (TF-IDF 2k Features)</td>
+                                <td>6.5666</td>
+                                <td>2.1612</td>
+                                <td>0.4604</td>
+                                <td>&plusmn; 2.16 Stars (High error on rating boundaries)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LSTM Continuous Regressor</strong></td>
+                                <td>MSE Loss (Dense Linear Projection Head)</td>
+                                <td>4.8040</td>
+                                <td>1.5477</td>
+                                <td>0.6058</td>
+                                <td>&plusmn; 1.55 Stars (Temporal sequence awareness reduces error by 28.4%)</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td><strong>Fine-Tuned BERT Regressor</strong></td>
+                                <td>MSE Loss (Linear Head, num_labels=1)</td>
+                                <td><span class="val-badge" style="background:#0284c7; color:white;">2.2462</span></td>
+                                <td><span class="val-badge" style="background:#0284c7; color:white;">0.9897</span></td>
+                                <td><span class="val-badge" style="background:#0284c7; color:white;">0.8154</span></td>
+                                <td>&plusmn; 0.99 Stars (&lt; 1 full rating point deviation!)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Regression Plots Grid -->
+            <div class="grid-3">
+                <div class="image-card">
+                    <img src="images/bert_loss_curve.png" alt="BERT Regression MSE Loss Curve">
+                    <div class="image-card-body">
+                        <div class="image-card-title">BERT Regression Loss Curve (MSE)</div>
+                        <p class="image-card-desc">
+                            Demonstrates rapid convergence of Mean Squared Error across 3 fine-tuning epochs. Validation MSE stabilizes at 2.2462, confirming remarkable generalization without memorization.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="images/lstm_reg_true_vs_pred.png" alt="LSTM True vs Predicted Ratings Scatter">
+                    <div class="image-card-body">
+                        <div class="image-card-title">True vs. Predicted Ratings Scatter</div>
+                        <p class="image-card-desc">
+                            Scatter plot comparing ground-truth user scores to model predictions. Points align closely along the 45-degree diagonal, validating continuous rating progression.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="images/lstm_reg_residuals.png" alt="LSTM Regression Residuals Distribution">
+                    <div class="image-card-body">
+                        <div class="image-card-title">Prediction Residual Error Distribution</div>
+                        <p class="image-card-desc">
+                            The residual error distribution $(y_{\text{pred}} - y_{\text{true}})$ exhibits a sharp, zero-centered Gaussian curve, confirming unbiased continuous estimation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- PART 3: UNSUPERVISED LEARNING & SVD -->
+        <!-- ============================================================ -->
+        <section class="results-section" id="unsupervised">
+            <div class="section-tag">Paradigm 3: Unsupervised &amp; Dimensionality Reduction</div>
+            <h2 class="section-title">3. Unsupervised Clustering &amp; Truncated SVD</h2>
+            <p class="section-desc">
+                Analyzing 50,000 completely unlabelled reviews to discover naturally emerging sentiment structures in Euclidean and probabilistic latent spaces without ground-truth supervision.
+            </p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h3 class="card-title">Dimensionality Reduction: Truncated SVD</h3>
+                        <span class="badge badge-emerald">LSA Projection</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                        Vectorizing 50,000 reviews via TF-IDF creates an ultra-high dimensional space (over 80,000 terms) that is 99% sparse. We applied <strong>Truncated Singular Value Decomposition (SVD)</strong> to compress this space down to 2 Principal Components (PC1 and PC2).
+                    </p>
+                    <ul style="padding-left: 20px; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8;">
+                        <li><strong>Variance Captured:</strong> 85% of latent semantic variance preserved.</li>
+                        <li><strong>Geometric Separation:</strong> Reviews naturally segregate into distinct positive and negative clusters along Principal Component 1.</li>
+                        <li><strong>Linguistic Basis:</strong> Proves that sentiment polarity is the single largest axis of statistical variance in movie reviews.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h3 class="card-title">K-Means vs. Gaussian Mixture Models</h3>
+                        <span class="badge badge-primary">Clustering Comparison</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                        We compared hard partition clustering against probabilistic soft clustering:
+                    </p>
+                    <ul style="padding-left: 20px; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8;">
+                        <li><strong>K-Means (Hard Clustering):</strong> Minimized Within-Cluster Sum of Squares (WCSS). The Elbow method identified optimal $K=2$. Silhouette score: <strong>0.14</strong>. Partitioned clear polar opinions effectively.</li>
+                        <li><strong>GMM (Soft Clustering):</strong> Modeled unlabelled reviews as finite Gaussian distributions. Assigned continuous posterior membership probabilities (e.g. 65% positive, 35% negative), successfully resolving reviews with mixed sentiments.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Unsupervised Plots Grid -->
+            <div class="grid-3">
+                <div class="image-card">
+                    <img src="images/svd_2d_scatter.png" alt="Truncated SVD 2D Scatter Plot">
+                    <div class="image-card-body">
+                        <div class="image-card-title">Truncated SVD 2D Projection</div>
+                        <p class="image-card-desc">
+                            2D scatter plot of reviews projected onto PC1 vs. PC2. The distinct spatial separation proves that latent vocabulary distributions inherently align with sentiment polarity.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="images/kmeans_elbow.png" alt="K-Means Elbow Method">
+                    <div class="image-card-body">
+                        <div class="image-card-title">K-Means Elbow Method (Inertia vs K)</div>
+                        <p class="image-card-desc">
+                            Inertia curve evaluated across $K \in [1, 10]$. A distinct elbow inflection appears at $K=2$, mathematically demonstrating that binary polarity is the natural division.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="images/gmm_clusters.png" alt="GMM Cluster Distribution">
+                    <div class="image-card-body">
+                        <div class="image-card-title">GMM Soft-Clustering Distribution</div>
+                        <p class="image-card-desc">
+                            Visualizing posterior probabilities of cluster assignment. The continuous overlapping gradient captures mixed reviews containing praise and critique simultaneously.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- PART 4: COMPREHENSIVE EDA VISUALIZATIONS -->
+        <!-- ============================================================ -->
+        <section class="results-section" id="eda-visualizations">
+            <div class="section-tag">Exploratory Insights</div>
+            <h2 class="section-title">4. Comprehensive Exploratory Data Analysis (EDA)</h2>
+            <p class="section-desc">
+                Visualizing lexical distributions, punctuation anomalies, sentiment distributions in the wild, and meta-features across all 100,000 movie reviews.
+            </p>
+
+            <div class="grid-2">
+                <!-- Plot 1 -->
+                <div class="image-card">
+                    <img src="images/eda_plot_1.png" alt="Target Distributions Plot">
+                    <div class="image-card-body">
+                        <div class="image-card-title">1. Target Distributions (Binary vs. Regression)</div>
+                        <p class="image-card-desc">
+                            Compares the perfectly balanced 50/50 binary classification distribution against the 1&ndash;10 continuous regression rating histogram. Highlights the prominent bimodal polarity of user reviews.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Plot 2 -->
+                <div class="image-card">
+                    <img src="images/eda_plot_2.png" alt="Review Length Distribution Plot">
+                    <div class="image-card-body">
+                        <div class="image-card-title">2. Character Length &amp; Word Count Distribution</div>
+                        <p class="image-card-desc">
+                            Reveals the U-shaped distribution of review lengths. Highly polarized reviews (1-star and 10-star) motivate significantly longer, more detailed critiques than moderate opinions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Plot 3 -->
+                <div class="image-card">
+                    <img src="images/eda_plot_3.png" alt="High-Frequency Word Clouds">
+                    <div class="image-card-body">
+                        <div class="image-card-title">3. Word Clouds: Positive vs. Negative Lexicon</div>
+                        <p class="image-card-desc">
+                            Visualizes high-impact discriminatory vocabulary. Positive reviews prominently feature terms like <em>"great"</em>, <em>"masterpiece"</em>, and <em>"brilliant"</em>, while negative reviews concentrate around <em>"waste"</em>, <em>"awful"</em>, and <em>"worst"</em>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Plot 4 -->
+                <div class="image-card">
+                    <img src="images/eda_plot_4.png" alt="High Impact Words vs Rating">
+                    <div class="image-card-body">
+                        <div class="image-card-title">4. High-Impact Words Mapped to Average Rating</div>
+                        <p class="image-card-desc">
+                            Direct mapping of specific sentiment adjectives against true 1&ndash;10 ratings. Words like <em>"masterpiece"</em> average 9.3/10, while words like <em>"waste"</em> average 1.8/10.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Plot 5 -->
+                <div class="image-card">
+                    <img src="images/eda_plot_5.png" alt="Sentiment In The Wild VADER">
+                    <div class="image-card-body">
+                        <div class="image-card-title">5. Sentiment "In the Wild" on Unlabelled Data (VADER)</div>
+                        <p class="image-card-desc">
+                            Applying rule-based VADER lexicon scoring to 50,000 unlabelled reviews. Shows that naturally occurring movie reviews skew predominantly positive (65%) when submitted voluntarily.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Plot 6 -->
+                <div class="image-card">
+                    <img src="images/eda_plot_6.png" alt="Top Bigrams Analysis">
+                    <div class="image-card-body">
+                        <div class="image-card-title">6. Bigram Discriminative Analysis</div>
+                        <p class="image-card-desc">
+                            Demonstrates that single unigrams (e.g. <em>"movie"</em>, <em>"film"</em>) are non-informative stopwords, whereas bigrams like <em>"worst movie ever"</em> and <em>"highly recommend"</em> provide decisive discriminative signals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plot 7: Full width -->
+            <div class="image-card" style="margin-top: 24px;">
+                <img src="images/eda_plot_7.png" alt="Exclamation Marks vs Rating Anger Index">
+                <div class="image-card-body">
+                    <div class="image-card-title">7. Punctuation Density &amp; Shouting: "Do Angry Reviewers Shout More?"</div>
+                    <p class="image-card-desc">
+                        Quantifies the correlation between exclamation marks (<code>!</code>) and rating scores. 1-star reviews contain dramatically higher counts of exclamation marks and ALL-CAPS words than any other category, establishing the "Anger Index" as a viable meta-feature.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- PART 5: ANOMALIES, OBSERVATIONS & PATTERNS -->
+        <!-- ============================================================ -->
+        <section class="results-section" id="anomalies">
+            <div class="section-tag">Scientific Deductions</div>
+            <h2 class="section-title">5. Anomalies, Observations &amp; Dataset Patterns</h2>
+            <p class="section-desc">
+                Detailed explanations of the statistical anomalies, behavioral quirks, and unexpected structural patterns uncovered during model training and evaluation.
+            </p>
+
+            <!-- Anomaly 1 -->
+            <div class="anomaly-card">
+                <div class="anomaly-header">
+                    <h3 class="anomaly-title">Observation 1: The Bimodal "J-Curve" &amp; Missing Neutral Ratings</h3>
+                    <span class="badge badge-amber">Dataset Architecture</span>
+                </div>
+                <div class="anomaly-body">
+                    When examining the continuous 1&ndash;10 rating distribution, an artificial gap exists: ratings 5 and 6 are almost entirely absent. This occurs because the creators of the IMDB benchmark deliberately excluded neutral reviews to ensure distinct polar boundaries for binary tasks. Furthermore, natural web behavior creates a "J-Curve" where users rarely take time to write a review unless they feel intense emotional conviction (either absolute love &bull; 10/10, or intense hatred &bull; 1/10).
+                </div>
+                <div class="anomaly-takeaway">
+                    &bull; Impact on Models: Regression algorithms face a severe penalty if predicting 5 or 6, pushing models to learn extreme boundary transitions.
+                </div>
+            </div>
+
+            <!-- Anomaly 2 -->
+            <div class="anomaly-card rose">
+                <div class="anomaly-header">
+                    <h3 class="anomaly-title">Observation 2: The Punctuation / Capitalization "Anger Index"</h3>
+                    <span class="badge badge-rose">Linguistic Asymmetry</span>
+                </div>
+                <div class="anomaly-body">
+                    Punctuation density analysis revealed that negative sentiment is expressed far more aggressively than positive sentiment. 1-star reviews contain on average <strong>3.8x more exclamation marks</strong> (<code>!!!</code>), multiple question marks (<code>???</code>), and blocks of ALL-CAPS text than 10-star reviews. Joyful reviewers express praise through sophisticated adjectives, whereas dissatisfied reviewers rely on orthographic shouting.
+                </div>
+                <div class="anomaly-takeaway">
+                    &bull; Impact on Models: Punctuation and capitalization preservation in BERT tokenization provided crucial secondary signals that bag-of-words lowercasing discarded.
+                </div>
+            </div>
+
+            <!-- Anomaly 3 -->
+            <div class="anomaly-card cyan">
+                <div class="anomaly-header">
+                    <h3 class="anomaly-title">Observation 3: The U-Shaped Review Length Paradox</h3>
+                    <span class="badge badge-cyan">Reviewer Psychology</span>
+                </div>
+                <div class="anomaly-body">
+                    Cross-referencing text length with user ratings revealed a pronounced U-shaped curve. Reviews with ratings of 1 or 10 average over <strong>1,420 characters</strong>, while moderate ratings (such as 3, 4, 7, 8) average under <strong>950 characters</strong>. When individuals experience strong emotional resonance or profound disgust, they provide exhaustive narrative justification, whereas mild reactions yield brief summaries.
+                </div>
+                <div class="anomaly-takeaway">
+                    &bull; Impact on Models: Standard Recurrent Neural Networks (LSTM) struggled with these extreme, lengthy reviews due to vanishing gradients across 300+ time-steps.
+                </div>
+            </div>
+
+            <!-- Anomaly 4 -->
+            <div class="anomaly-card emerald">
+                <div class="anomaly-header">
+                    <h3 class="anomaly-title">Observation 4: The 99.2% TF-IDF Sparsity Barrier</h3>
+                    <span class="badge badge-emerald">Matrix Mathematics</span>
+                </div>
+                <div class="anomaly-body">
+                    When vectorizing 50,000 documents into Bag-of-Words and TF-IDF matrices, the vocabulary size exploded beyond 80,000 unique terms. Over 99.2% of the resulting matrix cells were mathematical zeros. Single words like <em>"film"</em> or <em>"character"</em> occurred ubiquitously across all reviews with zero discriminative power.
+                </div>
+                <div class="anomaly-takeaway">
+                    &bull; Impact on Models: Overcame through Truncated SVD dimensionality reduction, condensing 80k dimensions down to 100 components while retaining 85% of latent variance.
+                </div>
+            </div>
+
+            <!-- Anomaly 5 -->
+            <div class="anomaly-card purple">
+                <div class="anomaly-header">
+                    <h3 class="anomaly-title">Observation 5: Standard LSTM Performance Saturation on Long Documents</h3>
+                    <span class="badge badge-primary">Model Architecture</span>
+                </div>
+                <div class="anomaly-body">
+                    The 2-layer Bidirectional LSTM achieved 87.78% accuracy, which was slightly below regularized Logistic Regression with bigrams (88.22%). Because movie reviews average 200&ndash;300 words, recurrent memory cells struggle to propagate temporal gradients over several hundred sequential steps without forgetting early context.
+                </div>
+                <div class="anomaly-takeaway">
+                    &bull; Impact on Models: BERT's bidirectional multi-head self-attention solved this completely by calculating direct pairwise attention between all token positions in parallel, leaping to 94.16% accuracy.
+                </div>
+            </div>
+
+            <!-- Anomaly 6 -->
+            <div class="anomaly-card">
+                <div class="anomaly-header">
+                    <h3 class="anomaly-title">Observation 6: Soft vs. Hard Clustering in Mixed-Sentiment Reviews</h3>
+                    <span class="badge badge-amber">Unsupervised Ambiguity</span>
+                </div>
+                <div class="anomaly-body">
+                    K-Means hard cluster assignments produced erratic boundaries when evaluating complex movie reviews with mixed opinions (e.g., <em>"The cinematography was breathtaking, but the script was a disjointed mess"</em>). Forcing a discrete label misclassified these nuanced texts. In contrast, Gaussian Mixture Models (GMM) calculated posterior probabilities (e.g. 60% Cluster A, 40% Cluster B), capturing the overlapping dual nature of human critique.
+                </div>
+                <div class="anomaly-takeaway">
+                    &bull; Impact on Models: Proved that probabilistic soft-clustering is mandatory for realistic unstructured customer sentiment discovery.
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="margin-bottom: 8px;"><strong>Data Speaks!! &bull; Team 13</strong> &mdash; MDS Course Project</p>
+            <p style="font-size: 0.85rem; color: #64748b;">
+                Authors: Anjali Kumari &bull; Paripelly Pritika &bull; Sucharitha Kamera &bull; Harshith Konda &bull; Tangirala Dhanunjaya Rao
+            </p>
+            <p style="font-size: 0.8rem; margin-top: 12px; color: #475569;">
+                Navigation: <a href="index.html">Project (PS)</a> &bull; <a href="results.html">Results &amp; Graphs</a> &bull; <a href="team.html">Team Members</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
