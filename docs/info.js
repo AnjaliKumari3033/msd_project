@@ -5,12 +5,12 @@
  */
 
 // Global variables for evaluation portals and main page tiles
-var team_name = "Team 13";
+var team_name = "Team 12";
 var project_title = "Data Speaks!! - Sentiment Analysis and Rating Prediction on IMDB";
 var project_topic = "Sentiment Analysis and Rating Prediction on IMDB Movie Reviews";
 
 var team_info = {
-    team_name: "Team 13",
+    team_name: "Team 12",
     project_title: "Data Speaks!! - Sentiment Analysis and Rating Prediction on IMDB",
     project_topic: "Sentiment Analysis and Continuous Rating Prediction across Binary Classification, Continuous Regression, and Unsupervised Clustering",
     dataset: "IMDB Large Movie Review Dataset (100,000 reviews)",

@@ -629,10 +629,10 @@
                             <td><strong>Multinomial Naive Bayes</strong></td>
                             <td>Bag-of-Words (word counts)</td>
                             <td class="metric-val">84.20%</td>
-                            <td class="metric-val">0.84</td>
-                            <td class="metric-val">0.84</td>
-                            <td class="metric-val">0.84</td>
-                            <td>Simple baseline; ignores word order, so it struggles with phrases like &ldquo;not good&rdquo;.</td>
+                            <td class="metric-val">&mdash;</td>
+                            <td class="metric-val">&mdash;</td>
+                            <td class="metric-val">&mdash;</td>
+                            <td>Simple baseline from report Table I; word independence assumption means precision, recall and F1 were not reported.</td>
                         </tr>
                         <tr>
                             <td><strong>Logistic Regression</strong></td>
@@ -861,6 +861,48 @@
             <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 860px;">
                 We also checked whether positive and negative reviews naturally separate without using any labels. Truncated SVD was used to reduce the TF-IDF features to 2 dimensions for plotting, and K-Means and Gaussian Mixture Models were used to group the 50,000 unlabelled reviews.
             </p>
+
+            <!-- Unsupervised Paradigm Table -->
+            <div class="benchmark-table-wrap">
+                <table class="benchmark-table">
+                    <thead>
+                        <tr>
+                            <th>Model / Method</th>
+                            <th>Learning Paradigm</th>
+                            <th>Input &rarr; Output</th>
+                            <th>Target / Criterion</th>
+                            <th>Supervised Metric</th>
+                            <th>Key Finding from Report</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Truncated SVD</strong></td>
+                            <td>Dimensionality Reduction</td>
+                            <td>5,000+ TF-IDF &rarr; 2 Components</td>
+                            <td>Variance Maximization</td>
+                            <td class="metric-val">&mdash;</td>
+                            <td>2D scatter plot confirms that latent semantic structures align with sentiment polarity.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>K-Means Clustering</strong></td>
+                            <td>Unsupervised (Hard Partitioning)</td>
+                            <td>50,000 unlabelled reviews (K = 2)</td>
+                            <td>WCSS Inertia Minimization</td>
+                            <td class="metric-val">&mdash;</td>
+                            <td>Elbow curve clearly bends at K = 2, confirming a natural two-group sentiment structure.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gaussian Mixture Model (GMM)</strong></td>
+                            <td>Unsupervised (Soft Probabilistic)</td>
+                            <td>50,000 unlabelled reviews (2 Gaussians)</td>
+                            <td>Expectation-Maximization (EM)</td>
+                            <td class="metric-val">&mdash;</td>
+                            <td>Assigns continuous probabilities to mixed reviews (e.g., 60% positive, 40% negative).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <!-- Model explanations -->
             <div class="model-notes" style="margin-top: 28px;">
