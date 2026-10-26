@@ -7,7 +7,10 @@ const Navbar = () => {
       <div className="container nav-container">
         <div className="nav-brand">Team 13: IMDB Sentiment Analysis</div>
         <div className="nav-links">
-          <NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+          <NavLink to="/" end className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+            Home
+          </NavLink>
+          <NavLink to="/classification" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
             Binary Classification
           </NavLink>
           <NavLink to="/regression" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
