@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empirical Results &amp; Behavioral Anomalies &mdash; Team 13 &mdash; Data Speaks!!</title>
+    <title>Results &amp; Key Observations &mdash; Team 12 &mdash; Data Speaks!!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -184,7 +184,7 @@
             color: var(--accent);
         }
 
-        /* Key Metrics Banner (Tabular, not cards) */
+        /* Key Metrics Banner */
         .stats-ledger {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -259,7 +259,7 @@
             color: var(--text-main);
         }
 
-        /* Technical Benchmark Tables */
+        /* Benchmark Tables */
         .benchmark-table-wrap {
             margin: 28px 0 40px 0;
             border: 1px solid var(--border);
@@ -307,7 +307,52 @@
             font-weight: 600;
         }
 
-        /* Figure Plates (Academic Journal Style) */
+        /* Model Explanations */
+        .model-notes {
+            display: grid;
+            gap: 0;
+            margin: 0 0 40px 0;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .model-note {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 32px;
+            padding: 22px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .model-note:last-child {
+            border-bottom: none;
+        }
+
+        .model-note h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+
+        .model-note .model-tag {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .model-note p {
+            font-size: 0.97rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Figure Plates */
         .figure-plate {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -353,7 +398,7 @@
             margin-top: 24px;
         }
 
-        /* Anomalies Editorial Breakdown */
+        /* Observations breakdown */
         .anomaly-row {
             display: grid;
             grid-template-columns: 280px 1fr;
@@ -468,6 +513,7 @@
             }
             .section-header-asym,
             .anomaly-row,
+            .model-note,
             .figures-grid-2,
             .figures-grid-3,
             .stats-ledger,
@@ -484,12 +530,12 @@
 </head>
 <body>
 
-    <!-- Editorial Top Masthead -->
+    <!-- Top Masthead -->
     <header class="masthead">
         <div class="masthead-inner">
             <a href="index.html" class="brand-block">
                 <span class="brand-title">Data Speaks!!</span>
-                <span class="brand-tag">MDS / Team 13</span>
+                <span class="brand-tag">MDS / Team 12</span>
             </a>
             <nav>
                 <ul class="nav-links">
@@ -509,40 +555,40 @@
             <a href="#regression" class="index-link">[02 Regression]</a>
             <a href="#unsupervised" class="index-link">[03 SVD &amp; Clustering]</a>
             <a href="#eda" class="index-link">[04 EDA Figures]</a>
-            <a href="#anomalies" class="index-link">[05 Anomalies]</a>
+            <a href="#anomalies" class="index-link">[05 Observations]</a>
         </div>
     </div>
 
     <!-- Header Section -->
     <section class="results-header" id="summary">
         <div class="container">
-            <span class="meta-dateline">Empirical Benchmark Report &bull; 10 Architectures &bull; 3 Paradigms</span>
-            <h1 class="results-heading">Empirical Results, Model Metrics &amp; Linguistic Anomalies</h1>
+            <span class="meta-dateline">Project Results Report &bull; 10 Models &bull; 3 Learning Tasks</span>
+            <h1 class="results-heading">Results, Model Performance &amp; Key Observations</h1>
             <p class="results-standfirst">
-                Evaluation results on the 100,000-sample IMDB corpus. Below are the performance records for each tested architecture across classification, regression, and unsupervised clustering, alongside documented anomalies discovered during corpus evaluation.
+                Results on the 100,000-review IMDB dataset. This page shows how each model performed on classification, rating prediction and clustering, along with the main patterns we found in the data.
             </p>
 
-            <!-- Key Figures Ledger -->
+            <!-- Key Figures -->
             <div class="stats-ledger">
                 <div class="stat-block">
-                    <span class="stat-label">SOTA Classification Accuracy</span>
+                    <span class="stat-label">Best Classification Accuracy</span>
                     <div class="stat-num">94.16%</div>
                     <div class="stat-detail">Fine-tuned BERT (110M params)</div>
                 </div>
                 <div class="stat-block">
-                    <span class="stat-label">Continuous Regression MAE</span>
+                    <span class="stat-label">Best Regression MAE</span>
                     <div class="stat-num">0.9897</div>
-                    <div class="stat-detail">Deviation within &lt;1 rating point</div>
+                    <div class="stat-detail">Average error is under 1 rating point</div>
                 </div>
                 <div class="stat-block">
-                    <span class="stat-label">Explained Variance (R²)</span>
+                    <span class="stat-label">Best R&sup2; Score</span>
                     <div class="stat-num">0.8154</div>
-                    <div class="stat-detail">Accounts for 81.5% of human variance</div>
+                    <div class="stat-detail">BERT explains 81.5% of rating variance</div>
                 </div>
                 <div class="stat-block">
-                    <span class="stat-label">Latent Dimension Reduction</span>
-                    <div class="stat-num">80k &rarr; 2</div>
-                    <div class="stat-detail">Truncated SVD (85% variance preserved)</div>
+                    <span class="stat-label">Dimensionality Reduction</span>
+                    <div class="stat-num">5,000 &rarr; 2</div>
+                    <div class="stat-detail">TF-IDF features reduced using Truncated SVD</div>
                 </div>
             </div>
         </div>
@@ -553,7 +599,7 @@
         <div class="container">
             <div class="section-header-asym">
                 <div>
-                    <span class="section-index">[01] Paradigm</span>
+                    <span class="section-index">[01] Task</span>
                 </div>
                 <div>
                     <h2 class="section-title">Binary Sentiment Classification</h2>
@@ -561,7 +607,7 @@
             </div>
 
             <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 860px;">
-                Four distinct models of increasing capacity were trained and evaluated on 50,000 balanced reviews (25,000 train / 25,000 test). The performance demonstrates that expanding from lexical frequency to bidirectional contextual self-attention yields a 9.96% absolute accuracy increase.
+                Four models of increasing complexity were trained on 50,000 balanced reviews (25,000 for training and 25,000 for testing) to predict whether a review is positive or negative. Moving from simple word counts to BERT&rsquo;s contextual understanding improved accuracy by 9.96 percentage points (84.20% to 94.16%).
             </p>
 
             <!-- Classification Table -->
@@ -569,69 +615,109 @@
                 <table class="benchmark-table">
                     <thead>
                         <tr>
-                            <th>Model Architecture</th>
+                            <th>Model</th>
                             <th>Representation</th>
                             <th>Accuracy</th>
                             <th>Precision</th>
                             <th>Recall</th>
                             <th>F1-Score</th>
-                            <th>Architectural Evaluation</th>
+                            <th>Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>Multinomial Naive Bayes</strong></td>
-                            <td>Bag-of-Words (Count)</td>
+                            <td>Bag-of-Words (word counts)</td>
                             <td class="metric-val">84.20%</td>
                             <td class="metric-val">0.84</td>
                             <td class="metric-val">0.84</td>
                             <td class="metric-val">0.84</td>
-                            <td>Probabilistic baseline; completely blind to word sequence, failing on negation phrases like &ldquo;not good&rdquo;.</td>
+                            <td>Simple baseline; ignores word order, so it struggles with phrases like &ldquo;not good&rdquo;.</td>
                         </tr>
                         <tr>
                             <td><strong>Logistic Regression</strong></td>
-                            <td>TF-IDF (Unigrams + Bigrams, $C=1.0$)</td>
+                            <td>TF-IDF (unigrams + bigrams, C = 1.0)</td>
                             <td class="metric-val">88.22%</td>
                             <td class="metric-val">0.88</td>
                             <td class="metric-val">0.88</td>
                             <td class="metric-val">0.88</td>
-                            <td>Bigrams capture phrase-level negation weights, establishing an effective linear decision boundary.</td>
+                            <td>Bigrams capture short phrases such as &ldquo;not good&rdquo;, giving a strong linear baseline.</td>
                         </tr>
                         <tr>
                             <td><strong>Bidirectional LSTM</strong></td>
-                            <td>Dense 128-dim Embeddings, 2-layer BiLSTM</td>
+                            <td>128-dim embeddings, 2-layer BiLSTM</td>
                             <td class="metric-val">87.78%</td>
                             <td class="metric-val">0.88</td>
                             <td class="metric-val">0.88</td>
-                            <td class="metric-val">0.8778</td>
-                            <td>Processes sequences sequentially; however, long document lengths (&gt;200 tokens) cause temporal gradient saturation.</td>
+                            <td class="metric-val">0.88</td>
+                            <td>Reads text in order, but loses information on long reviews (200+ words).</td>
                         </tr>
                         <tr class="highlight-model">
-                            <td><strong>BERT Transformer (Fine-Tuned)</strong></td>
-                            <td>WordPiece Tokens + Self-Attention</td>
+                            <td><strong>BERT (Fine-Tuned)</strong></td>
+                            <td>WordPiece tokens + self-attention</td>
                             <td class="metric-val">94.16%</td>
                             <td class="metric-val">0.94</td>
                             <td class="metric-val">0.94</td>
                             <td class="metric-val">0.94</td>
-                            <td>State-of-the-art; global bidirectional self-attention captures long-range dependencies, sarcasm, and qualifiers.</td>
+                            <td>Best model; self-attention understands context, sarcasm and negation across the whole review.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Figures Plate -->
+            <!-- Model explanations -->
+            <div class="model-notes">
+                <div class="model-note">
+                    <div>
+                        <h4>Multinomial Naive Bayes</h4>
+                        <span class="model-tag">Accuracy 84.20%</span>
+                    </div>
+                    <p>
+                        Naive Bayes counts how often each word appears and assumes all words are independent of each other. It is fast and makes a good baseline, but because it ignores word order it cannot understand negation (&ldquo;not good&rdquo;) or sarcasm. This is why it scored the lowest of the four models.
+                    </p>
+                </div>
+                <div class="model-note">
+                    <div>
+                        <h4>Logistic Regression</h4>
+                        <span class="model-tag">Accuracy 88.22%</span>
+                    </div>
+                    <p>
+                        We used TF-IDF features with unigrams and bigrams and L2 regularization (C = 1). TF-IDF reduces the weight of very common words, and bigrams like &ldquo;worst movie&rdquo; keep a little word-order information. This simple model gave a surprisingly strong 88.22% and even slightly beat our BiLSTM.
+                    </p>
+                </div>
+                <div class="model-note">
+                    <div>
+                        <h4>Bidirectional LSTM</h4>
+                        <span class="model-tag">Accuracy 87.78%</span>
+                    </div>
+                    <p>
+                        This is a 2-layer BiLSTM built in PyTorch that reads each review both forwards and backwards using 128-dimensional word embeddings. It learns word order and grammar from scratch, but reviews are long (over 200 words on average), and LSTMs tend to forget early parts of long text. Because of this it did not beat Logistic Regression.
+                    </p>
+                </div>
+                <div class="model-note">
+                    <div>
+                        <h4>BERT (bert-base-uncased)</h4>
+                        <span class="model-tag">Accuracy 94.16%</span>
+                    </div>
+                    <p>
+                        We fine-tuned the pre-trained BERT model for 3 epochs on our reviews (transfer learning). Self-attention lets every word look at every other word in the review, so BERT understands context, negation and sarcasm much better than the other models. It gave the best results, with only 820 false positives and 629 false negatives on the test set.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Figures -->
             <div class="figures-grid-2">
                 <div class="figure-plate">
                     <img src="images/bert_confusion_matrix.png" alt="BERT Confusion Matrix">
                     <div class="figure-caption">
-                        <strong>Figure 1.1</strong> Confusion matrix for fine-tuned BERT across 25,000 test reviews. The false-negative and false-positive rates are balanced and minimal, achieving 94.16% overall accuracy.
+                        <strong>Figure 1.1</strong> Confusion matrix for fine-tuned BERT on the test set (11,540 true negatives, 11,810 true positives, 820 false positives, 629 false negatives), giving 94.16% accuracy.
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/lstm_confusion_matrix.png" alt="LSTM Confusion Matrix">
                     <div class="figure-caption">
-                        <strong>Figure 1.2</strong> Confusion matrix for 2-layer Bidirectional LSTM. While it reliably classifies clear polarity, mixed-sentiment reviews produce boundary leakage compared to BERT.
+                        <strong>Figure 1.2</strong> Confusion matrix for the 2-layer Bidirectional LSTM. It handles clearly positive or negative reviews well, but makes more mistakes on mixed-sentiment reviews than BERT.
                     </div>
                 </div>
             </div>
@@ -639,7 +725,7 @@
             <div class="figure-plate" style="max-width: 820px; margin: 0 auto;">
                 <img src="images/lstm_loss_curve.png" alt="LSTM Loss Curve">
                 <div class="figure-caption">
-                    <strong>Figure 1.3</strong> Training and validation Cross-Entropy loss curve for Bidirectional LSTM across 10 epochs. Early stopping ensured convergence without gradient instability.
+                    <strong>Figure 1.3</strong> Training and validation loss curve for the Bidirectional LSTM. Early stopping was used to stop training before the model started overfitting.
                 </div>
             </div>
         </div>
@@ -650,15 +736,15 @@
         <div class="container">
             <div class="section-header-asym">
                 <div>
-                    <span class="section-index">[02] Paradigm</span>
+                    <span class="section-index">[02] Task</span>
                 </div>
                 <div>
-                    <h2 class="section-title">Continuous Rating Regression (1&ndash;10 Scale)</h2>
+                    <h2 class="section-title">Rating Prediction (1&ndash;10 Scale)</h2>
                 </div>
             </div>
 
             <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 860px;">
-                Predicting an exact continuous star rating maps natural language into a numerical metric space. The standard cross-entropy classification head was replaced with a single continuous linear projection node optimizing Mean Squared Error (MSE) loss.
+                Here the goal is to predict the exact rating (1&ndash;10) a user gave, which is harder than simple positive/negative classification. For the deep learning models, the classification layer was replaced with a single output node trained using Mean Squared Error (MSE) loss.
             </p>
 
             <!-- Regression Table -->
@@ -666,63 +752,94 @@
                 <table class="benchmark-table">
                     <thead>
                         <tr>
-                            <th>Model Architecture</th>
+                            <th>Model</th>
                             <th>Loss Function</th>
-                            <th>Mean Squared Error (MSE)</th>
-                            <th>Mean Absolute Error (MAE)</th>
-                            <th>R² Score</th>
-                            <th>Practical Deviation</th>
+                            <th>MSE</th>
+                            <th>MAE</th>
+                            <th>R&sup2; Score</th>
+                            <th>Average Error</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>XGBoost Regressor</strong></td>
-                            <td>Squared Error Loss (TF-IDF 2k Features)</td>
+                            <td>Squared error (TF-IDF, 2,000 features)</td>
                             <td class="metric-val">6.5666</td>
                             <td class="metric-val">2.1612</td>
                             <td class="metric-val">0.4604</td>
-                            <td>&plusmn; 2.16 Stars on 1&ndash;10 Scale</td>
+                            <td>&plusmn; 2.16 rating points</td>
                         </tr>
                         <tr>
                             <td><strong>LSTM Regressor</strong></td>
-                            <td>MSE Loss (Dense Linear Head)</td>
+                            <td>MSE loss (linear output layer)</td>
                             <td class="metric-val">4.8040</td>
                             <td class="metric-val">1.5477</td>
                             <td class="metric-val">0.6058</td>
-                            <td>&plusmn; 1.55 Stars (28.4% error reduction vs. XGBoost)</td>
+                            <td>&plusmn; 1.55 rating points (28.4% lower MAE than XGBoost)</td>
                         </tr>
                         <tr class="highlight-model">
                             <td><strong>BERT Regressor (Fine-Tuned)</strong></td>
-                            <td>MSE Loss (Linear Projection, num_labels=1)</td>
+                            <td>MSE loss (single output node, num_labels=1)</td>
                             <td class="metric-val">2.2462</td>
                             <td class="metric-val">0.9897</td>
                             <td class="metric-val">0.8154</td>
-                            <td>&plusmn; 0.99 Stars (&lt; 1 full rating point deviation)</td>
+                            <td>&plusmn; 0.99 rating points (under 1 point)</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Regression Plates -->
+            <!-- Model explanations -->
+            <div class="model-notes">
+                <div class="model-note">
+                    <div>
+                        <h4>XGBoost Regressor</h4>
+                        <span class="model-tag">MAE 2.1612 &bull; R&sup2; 0.4604</span>
+                    </div>
+                    <p>
+                        XGBoost builds many small decision trees one after another, where each tree fixes the mistakes of the previous ones. We trained it on 2,000 TF-IDF features (unigrams and bigrams). Since it only sees word frequencies and not word order, it is off by about 2 rating points on average, making it our weakest regression model.
+                    </p>
+                </div>
+                <div class="model-note">
+                    <div>
+                        <h4>LSTM Regressor</h4>
+                        <span class="model-tag">MAE 1.5477 &bull; R&sup2; 0.6058</span>
+                    </div>
+                    <p>
+                        We reused the LSTM architecture with a single linear output and MSE loss so it predicts a number instead of a class. Because it reads the review as a sequence, it improved a lot over XGBoost (MAE from 2.16 to 1.55). It still struggles to tell close ratings apart, such as 7 versus 8.
+                    </p>
+                </div>
+                <div class="model-note">
+                    <div>
+                        <h4>BERT Regressor</h4>
+                        <span class="model-tag">MAE 0.9897 &bull; R&sup2; 0.8154</span>
+                    </div>
+                    <p>
+                        We fine-tuned bert-base-uncased for 3 epochs after replacing the classification head with one output node and using MSE loss. MSE penalizes large mistakes more, so predicting 8 for a true 9 is better than predicting 2. BERT&rsquo;s understanding of context gave the best result: the average prediction is less than one rating point away from the true rating.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Regression Figures -->
             <div class="figures-grid-3">
                 <div class="figure-plate">
                     <img src="images/bert_loss_curve.png" alt="BERT Regression MSE Loss">
                     <div class="figure-caption">
-                        <strong>Figure 2.1</strong> BERT continuous regression training and validation MSE convergence curve over 3 epochs, demonstrating stable fitting to 2.2462 MSE.
+                        <strong>Figure 2.1</strong> BERT regression training and validation MSE over 3 epochs, showing stable training and a final test MSE of 2.2462.
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/lstm_reg_true_vs_pred.png" alt="LSTM True vs Predicted">
                     <div class="figure-caption">
-                        <strong>Figure 2.2</strong> Ground truth ratings vs. model predicted ratings scatter plot for the LSTM regressor, tracking the 45-degree parity diagonal.
+                        <strong>Figure 2.2</strong> True ratings vs. predicted ratings for the LSTM regressor. Points closer to the diagonal line are better predictions.
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/lstm_reg_residuals.png" alt="LSTM Residual Distribution">
                     <div class="figure-caption">
-                        <strong>Figure 2.3</strong> Residual error distribution $(y_{\text{pred}} - y_{\text{true}})$, exhibiting a zero-centered Gaussian distribution without systematic under- or over-prediction bias.
+                        <strong>Figure 2.3</strong> Distribution of prediction errors (predicted rating minus true rating) for the LSTM regressor. The errors are centered near zero, so the model does not consistently over- or under-predict.
                     </div>
                 </div>
             </div>
@@ -734,36 +851,67 @@
         <div class="container">
             <div class="section-header-asym">
                 <div>
-                    <span class="section-index">[03] Paradigm</span>
+                    <span class="section-index">[03] Task</span>
                 </div>
                 <div>
-                    <h2 class="section-title">Latent Semantic Geometry &amp; Clustering</h2>
+                    <h2 class="section-title">Dimensionality Reduction &amp; Clustering</h2>
                 </div>
             </div>
 
             <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 860px;">
-                50,000 unlabelled reviews were projected into latent semantic space to observe whether human sentiment naturally segregates in geometric space without supervision.
+                We also checked whether positive and negative reviews naturally separate without using any labels. Truncated SVD was used to reduce the TF-IDF features to 2 dimensions for plotting, and K-Means and Gaussian Mixture Models were used to group the 50,000 unlabelled reviews.
             </p>
+
+            <!-- Model explanations -->
+            <div class="model-notes" style="margin-top: 28px;">
+                <div class="model-note">
+                    <div>
+                        <h4>Truncated SVD</h4>
+                        <span class="model-tag">Dimensionality Reduction</span>
+                    </div>
+                    <p>
+                        TF-IDF creates thousands of features per review, which is hard to visualize. Truncated SVD compresses them into just 2 principal components so every review can be drawn as a point on a 2D plot. Even with this heavy compression, positive and negative reviews show visible separation.
+                    </p>
+                </div>
+                <div class="model-note">
+                    <div>
+                        <h4>K-Means Clustering</h4>
+                        <span class="model-tag">Hard Clustering</span>
+                    </div>
+                    <p>
+                        K-Means groups reviews into K clusters by placing each review in the cluster with the nearest center. We used the elbow curve to choose K, and it points to K = 2, which matches the positive/negative split. Its limitation is that every review must belong fully to one cluster, even if its opinion is mixed.
+                    </p>
+                </div>
+                <div class="model-note">
+                    <div>
+                        <h4>Gaussian Mixture Model (GMM)</h4>
+                        <span class="model-tag">Soft Clustering</span>
+                    </div>
+                    <p>
+                        GMM models each cluster as a Gaussian distribution and gives every review a probability for each cluster (for example 60% positive and 40% negative). This works better for reviews that contain both praise and criticism, since they are not forced into a single group.
+                    </p>
+                </div>
+            </div>
 
             <div class="figures-grid-3">
                 <div class="figure-plate">
                     <img src="images/svd_2d_scatter.png" alt="Truncated SVD 2D Scatter">
                     <div class="figure-caption">
-                        <strong>Figure 3.1</strong> Truncated SVD 2D projection (PC1 vs. PC2) compressing 80,000+ sparse TF-IDF features to 2 components. The spatial separation proves sentiment is the primary axis of variance.
+                        <strong>Figure 3.1</strong> Truncated SVD 2D projection (PC1 vs. PC2) of the TF-IDF features. Positive and negative reviews show distinct regions, which suggests sentiment is a major source of variation in the text.
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/kmeans_elbow.png" alt="K-Means Elbow Curve">
                     <div class="figure-caption">
-                        <strong>Figure 3.2</strong> K-Means inertia evaluated across $K \in [1, 10]$. The elbow inflection appears at $K=2$, mathematically reinforcing binary polarity.
+                        <strong>Figure 3.2</strong> K-Means elbow curve (inertia for K = 1 to 10). The bend at K = 2 supports the two-group positive/negative structure.
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/gmm_clusters.png" alt="GMM Posterior Distributions">
                     <div class="figure-caption">
-                        <strong>Figure 3.3</strong> Gaussian Mixture Models posterior probabilities for soft-clustering, capturing continuous transitions for mixed-opinion reviews.
+                        <strong>Figure 3.3</strong> Gaussian Mixture Model soft-clustering probabilities, showing how mixed-opinion reviews sit between the two clusters.
                     </div>
                 </div>
             </div>
@@ -839,110 +987,110 @@
         </div>
     </section>
 
-    <!-- SECTION 5: BEHAVIORAL ANOMALIES -->
+    <!-- SECTION 5: KEY OBSERVATIONS -->
     <section class="results-section" id="anomalies">
         <div class="container">
             <div class="section-header-asym">
                 <div>
-                    <span class="section-index">[05] Deductions</span>
+                    <span class="section-index">[05] Observations</span>
                 </div>
                 <div>
-                    <h2 class="section-title">Six Documented Linguistic &amp; Dataset Anomalies</h2>
+                    <h2 class="section-title">Key Observations from the Data</h2>
                 </div>
             </div>
 
             <div class="anomaly-row">
                 <div class="anomaly-meta">
-                    <span class="anomaly-idx">ANOMALY 01</span>
-                    <span class="anomaly-category">Corpus Architecture</span>
+                    <span class="anomaly-idx">OBSERVATION 01</span>
+                    <span class="anomaly-category">Rating Distribution</span>
                 </div>
                 <div class="anomaly-content">
-                    <h3>The Bimodal Polarizing &ldquo;J-Curve&rdquo; and Missing Neutral Ratings</h3>
+                    <h3>Ratings Are Mostly at the Extremes</h3>
                     <p>
-                        The continuous 1&ndash;10 rating distribution has an intentional gap: ratings 5 and 6 are almost entirely absent. The creators of the benchmark IMDB dataset intentionally discarded neutral reviews to enforce strict binary polarity. In real-world data collection, reviewers rarely write when indifferent; submissions concentrate heavily at the extremes (1/10 and 10/10).
+                        The 1&ndash;10 rating histogram is U-shaped, and ratings 5 and 6 are almost completely missing. The IMDB benchmark dataset leaves out neutral reviews on purpose so that every review is clearly positive or negative. People also tend to write reviews when they feel strongly, so most ratings are 1 or 10.
                     </p>
                     <div class="anomaly-takeaway">
-                        Impact: Regression models face harsh penalties for intermediate predictions, forcing learning algorithms toward extreme boundary transitions.
+                        Takeaway: With so few mid-range ratings, regression models rarely see examples in the middle of the scale, which makes middle-range predictions harder.
                     </div>
                 </div>
             </div>
 
             <div class="anomaly-row">
                 <div class="anomaly-meta">
-                    <span class="anomaly-idx">ANOMALY 02</span>
-                    <span class="anomaly-category">Linguistic Asymmetry</span>
+                    <span class="anomaly-idx">OBSERVATION 02</span>
+                    <span class="anomaly-category">Writing Style</span>
                 </div>
                 <div class="anomaly-content">
-                    <h3>The Punctuation and Capitalization &ldquo;Anger Index&rdquo;</h3>
+                    <h3>Angry Reviews Use More Exclamation Marks and CAPS</h3>
                     <p>
-                        Regression analysis revealed that negative sentiment is expressed far more aggressively than positive praise. 1-star reviews contain on average <strong>3.8x more exclamation marks</strong> (<code>!!!</code>), consecutive question marks, and ALL-CAPS shouting than 10-star reviews. Positive reviewers rely on sophisticated adjectives; dissatisfied reviewers rely on orthographic emphasis.
+                        Our analysis showed that 1-star reviews use clearly more exclamation marks (!!!) and ALL-CAPS words than 10-star reviews. Unhappy reviewers tend to stress their opinion with punctuation and capital letters, while happy reviewers mostly use positive adjectives.
                     </p>
                     <div class="anomaly-takeaway">
-                        Impact: Retaining casing and punctuation in subword tokenization gave BERT a powerful secondary predictive feature that bag-of-words lowercasing discarded.
+                        Takeaway: How people write (punctuation and capitalization) carries useful information about sentiment, not just what words they use.
                     </div>
                 </div>
             </div>
 
             <div class="anomaly-row">
                 <div class="anomaly-meta">
-                    <span class="anomaly-idx">ANOMALY 03</span>
-                    <span class="anomaly-category">Reviewer Psychology</span>
+                    <span class="anomaly-idx">OBSERVATION 03</span>
+                    <span class="anomaly-category">Review Length</span>
                 </div>
                 <div class="anomaly-content">
-                    <h3>The U-Shaped Document Length Paradox</h3>
+                    <h3>Strong Opinions Lead to Longer Reviews</h3>
                     <p>
-                        Review length exhibits a pronounced U-shaped curve when plotted against user score. 1-star and 10-star reviews average over <strong>1,420 characters</strong>, while moderate reviews average under <strong>950 characters</strong>. Intense emotional reaction motivates reviewers to draft exhaustive narrative justifications, whereas mild opinions generate brief summaries.
+                        Reviews with extreme ratings (1-star and 10-star) are longer on average than moderate ones. When someone feels very strongly, they tend to explain their reasons in detail, while mild opinions are usually short summaries.
                     </p>
                     <div class="anomaly-takeaway">
-                        Impact: Sequential networks (BiLSTM) experienced gradient decay across these lengthy reviews, whereas Transformer self-attention processed all tokens in parallel.
+                        Takeaway: Long reviews are harder for the BiLSTM, which forgets earlier words, while BERT&rsquo;s self-attention can look at the whole review at once.
                     </div>
                 </div>
             </div>
 
             <div class="anomaly-row">
                 <div class="anomaly-meta">
-                    <span class="anomaly-idx">ANOMALY 04</span>
-                    <span class="anomaly-category">Matrix Mathematics</span>
+                    <span class="anomaly-idx">OBSERVATION 04</span>
+                    <span class="anomaly-category">High-Dimensional Text</span>
                 </div>
                 <div class="anomaly-content">
-                    <h3>The 99.2% TF-IDF Matrix Sparsity Barrier</h3>
+                    <h3>TF-IDF Features Are Very Sparse</h3>
                     <p>
-                        Extracting unigrams and bigrams across 50,000 documents produced a vocabulary matrix exceeding 80,000 unique terms, with over 99.2% zero entries. Universal terms like <em>&ldquo;film&rdquo;</em> and <em>&ldquo;character&rdquo;</em> contributed zero discriminative weight despite massive frequency counts.
+                        TF-IDF turns each review into thousands of features, and most of them are zero because any one review uses only a small part of the vocabulary. Very common words such as &ldquo;movie&rdquo; and &ldquo;film&rdquo; appear everywhere, so they do not help in telling positive and negative reviews apart.
                     </p>
                     <div class="anomaly-takeaway">
-                        Impact: Truncated SVD successfully compressed this 80,000-dimensional space down to 100 components, preserving 85% of latent variance and enabling fast clustering.
+                        Takeaway: Truncated SVD reduced the 5,000 TF-IDF features to 2 components, which made it possible to visualize the reviews and still showed a visible sentiment separation.
                     </div>
                 </div>
             </div>
 
             <div class="anomaly-row">
                 <div class="anomaly-meta">
-                    <span class="anomaly-idx">ANOMALY 05</span>
-                    <span class="anomaly-category">Model Architecture</span>
+                    <span class="anomaly-idx">OBSERVATION 05</span>
+                    <span class="anomaly-category">Model Comparison</span>
                 </div>
                 <div class="anomaly-content">
-                    <h3>Recurrent Gradient Decay on Extended Documents</h3>
+                    <h3>The BiLSTM Did Not Beat Logistic Regression</h3>
                     <p>
-                        The 2-layer Bidirectional LSTM achieved 87.78% accuracy, which was slightly below regularized Logistic Regression with bigrams (88.22%). Because movie reviews average 200&ndash;300 tokens, recurrent memory cells struggle to propagate temporal backpropagation over hundreds of steps without information loss.
+                        Our 2-layer BiLSTM reached 87.78% accuracy, slightly below Logistic Regression with bigrams (88.22%). Movie reviews are long (over 200 words on average), and LSTMs find it hard to remember information from the start of a long text, so their extra complexity did not pay off here.
                     </p>
                     <div class="anomaly-takeaway">
-                        Impact: BERT eliminated this bottleneck through constant-time pairwise attention between all word positions, leaping to 94.16% accuracy.
+                        Takeaway: BERT solved this problem with self-attention and reached 94.16% accuracy.
                     </div>
                 </div>
             </div>
 
             <div class="anomaly-row">
                 <div class="anomaly-meta">
-                    <span class="anomaly-idx">ANOMALY 06</span>
-                    <span class="anomaly-category">Unsupervised Ambiguity</span>
+                    <span class="anomaly-idx">OBSERVATION 06</span>
+                    <span class="anomaly-category">Clustering</span>
                 </div>
                 <div class="anomaly-content">
-                    <h3>Hard Partitioning Collapse in Mixed Reviews</h3>
+                    <h3>Mixed Reviews Are Hard to Put in One Cluster</h3>
                     <p>
-                        K-Means hard cluster assignments struggled on reviews exhibiting mixed sentiment (e.g. <em>&ldquo;Superb acting, but an incoherent mess of a plot&rdquo;</em>). Forcing an absolute discrete cluster label distorted topical coherence. Gaussian Mixture Models (GMM) resolved this by calculating posterior probabilities (e.g. 60% positive, 40% negative).
+                        Some reviews contain both praise and criticism, for example <em>&ldquo;Superb acting, but an incoherent mess of a plot&rdquo;</em>. K-Means has to place such a review in exactly one cluster, while Gaussian Mixture Models give it a probability for each cluster (for example 60% positive and 40% negative).
                     </p>
                     <div class="anomaly-takeaway">
-                        Impact: Confirmed that probabilistic soft-clustering is mathematically superior for real-world unlabelled opinion mining.
+                        Takeaway: Soft clustering with GMM suits real-world opinions better than hard clustering.
                     </div>
                 </div>
             </div>
@@ -953,26 +1101,26 @@
     <footer class="site-footer">
         <div class="container footer-inner">
             <div>
-                <div class="footer-brand">Data Speaks!! &bull; Team 13</div>
+                <div class="footer-brand">Data Speaks!! &bull; Team 12</div>
                 <p>
-                    Multidisciplinary Data Science Course Project. Research conducted on natural language processing, continuous rating prediction, and latent semantic clustering.
+                    Midterm data analysis project on sentiment classification, rating prediction and clustering of IMDB movie reviews.
                 </p>
             </div>
             <div class="footer-col">
                 <h5>Navigation</h5>
                 <ul class="footer-links">
                     <li><a href="index.html">01 &bull; Project Overview (PS)</a></li>
-                    <li><a href="results.html">02 &bull; Empirical Results</a></li>
-                    <li><a href="team.html">03 &bull; Research Team</a></li>
+                    <li><a href="results.html">02 &bull; Results</a></li>
+                    <li><a href="team.html">03 &bull; Team</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h5>Repository Manifest</h5>
+                <h5>Project Summary</h5>
                 <p style="font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6;">
                     10 Models Evaluated<br>
-                    100,000 Documents<br>
-                    94.16% Peak Accuracy<br>
-                    0.9897 Peak MAE
+                    100,000 Reviews<br>
+                    94.16% Best Accuracy<br>
+                    0.9897 Best MAE
                 </p>
             </div>
         </div>
