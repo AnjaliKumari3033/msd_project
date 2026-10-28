@@ -36,27 +36,27 @@ var team_info = {
         {
             name: "Anjali Kumari",
             role: "Project Lead",
-            bio: "Led overall project orchestration and spearheaded BERT transformer fine-tuning for both binary classification (94.16% accuracy) and continuous regression (0.9897 MAE)."
+            bio: "Led the overall project and fine-tuned the BERT Transformer for both binary classification (94.16% accuracy) and rating prediction (0.9897 MAE). Coordinated tasks across the team and compiled the report."
         },
         {
             name: "Tangirala Dhanunjaya Rao",
             role: "Team Member",
-            bio: "Designed and trained the PyTorch Bidirectional LSTM neural networks, performed continuous regression residual analysis, and built the responsive web application dashboard."
+            bio: "Built and trained the 2-layer Bidirectional LSTM in PyTorch for classification (87.78% accuracy) and the continuous LSTM regressor (1.5477 MAE). Analyzed residuals and built the project website."
         },
         {
             name: "Paripelly Pritika",
             role: "Team Member",
-            bio: "Architected the automated data extraction pipelines parsing 100,000 raw text files, regex sanitization, deduplication, and comparative EDA distribution analysis."
+            bio: "Wrote Python extraction scripts to parse all 100,000 raw text reviews from IMDB. Handled data preprocessing (HTML tag removal, deduplication) and generated the EDA distribution plots."
         },
         {
             name: "Sucharitha Kamera",
             role: "Team Member",
-            bio: "Developed baseline statistical classifiers including Multinomial Naive Bayes and engineered TF-IDF n-gram vectorization pipelines with L2-regularized Logistic Regression."
+            bio: "Implemented and benchmarked baseline ML models: Multinomial Naive Bayes (84.20% accuracy) and Logistic Regression with TF-IDF unigrams and bigrams (88.22% accuracy)."
         },
         {
             name: "Harshith Konda",
             role: "Team Member",
-            bio: "Implemented Truncated SVD dimensionality reduction, K-Means clustering optimization via the Elbow method, and Gaussian Mixture Models (GMM) for soft-clustering mixed reviews."
+            bio: "Handled unsupervised learning and dimensionality reduction. Compressed TF-IDF features using Truncated SVD, implemented K-Means clustering, and tested Gaussian Mixture Models (GMM)."
         }
     ]
 };

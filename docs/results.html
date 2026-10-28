@@ -554,7 +554,7 @@
             <a href="#classification" class="index-link">[01 Classification]</a>
             <a href="#regression" class="index-link">[02 Regression]</a>
             <a href="#unsupervised" class="index-link">[03 SVD &amp; Clustering]</a>
-            <a href="#eda" class="index-link">[04 EDA Figures]</a>
+            <a href="#eda" class="index-link">[04 EDA Plots]</a>
             <a href="#anomalies" class="index-link">[05 Observations]</a>
         </div>
     </div>
@@ -965,57 +965,57 @@
         <div class="container">
             <div class="section-header-asym">
                 <div>
-                    <span class="section-index">[04] Corpus Audit</span>
+                    <span class="section-index">[04] Data Exploration</span>
                 </div>
                 <div>
-                    <h2 class="section-title">Exploratory Data Analysis: All 7 Empirical Plates</h2>
+                    <h2 class="section-title">Exploratory Data Analysis (EDA) &amp; Plots</h2>
                 </div>
             </div>
 
             <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 860px; margin-bottom: 24px;">
-                Systematic auditing of textual properties across all 100,000 reviews surfaced distinctive meta-features that guided our architectural selections:
+                Before training our models, we analyzed the 100,000 reviews to see how word choices, review lengths, and punctuation vary between positive and negative reviews. Here are the 7 key plots from our analysis:
             </p>
 
             <div class="figures-grid-2">
                 <div class="figure-plate">
                     <img src="images/eda_plot_1.png" alt="Target Distributions">
                     <div class="figure-caption">
-                        <strong>Figure 4.1</strong> Target Distributions: Perfectly balanced 50/50 binary classification split vs. bimodal U-shaped continuous 1&ndash;10 rating histogram.
+                        <strong>Figure 4.1</strong> Target Distributions: Comparing the balanced 50/50 binary classification set against the U-shaped distribution of 1&ndash;10 star ratings.
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/eda_plot_2.png" alt="Review Length Distribution">
                     <div class="figure-caption">
-                        <strong>Figure 4.2</strong> Document Length: Character and word count distributions across all three sub-datasets, demonstrating a severe positive right-skew.
+                        <strong>Figure 4.2</strong> Review Length Distribution: Word and character counts across the reviews, showing that most reviews are fairly short with a long tail of detailed essays.
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/eda_plot_3.png" alt="Word Clouds">
                     <div class="figure-caption">
-                        <strong>Figure 4.3</strong> Word Clouds: High-frequency lexical divergence comparing positive (&ldquo;masterpiece&rdquo;, &ldquo;brilliant&rdquo;) against negative (&ldquo;waste&rdquo;, &ldquo;awful&rdquo;).
+                        <strong>Figure 4.3</strong> Word Clouds: Most frequent words in positive reviews (&ldquo;great&rdquo;, &ldquo;brilliant&rdquo;) vs. negative reviews (&ldquo;waste&rdquo;, &ldquo;awful&rdquo;, &ldquo;bad&rdquo;).
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/eda_plot_4.png" alt="High Impact Words">
                     <div class="figure-caption">
-                        <strong>Figure 4.4</strong> Adjective Ratings: Average continuous rating assigned to reviews containing specific high-impact words (&ldquo;masterpiece&rdquo; = 9.3 vs. &ldquo;waste&rdquo; = 1.8).
+                        <strong>Figure 4.4</strong> Rating by Keyword: Average score given to reviews containing specific words (&ldquo;masterpiece&rdquo; = 9.3 stars vs. &ldquo;waste&rdquo; = 1.8 stars).
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/eda_plot_5.png" alt="VADER Sentiment Wild">
                     <div class="figure-caption">
-                        <strong>Figure 4.5</strong> Unlabelled Sentiment in the Wild: VADER compound score distribution on 50,000 unlabelled reviews, indicating a natural 65% positive baseline.
+                        <strong>Figure 4.5</strong> Sentiment on Unlabelled Reviews: Running VADER sentiment scoring on the 50,000 unlabelled reviews shows that roughly 65% lean positive naturally.
                     </div>
                 </div>
 
                 <div class="figure-plate">
                     <img src="images/eda_plot_6.png" alt="Bigram Analysis">
                     <div class="figure-caption">
-                        <strong>Figure 4.6</strong> N-Gram Discriminative Analysis: Top predictive bigrams (&ldquo;worst movie ever&rdquo; vs. &ldquo;highly recommend&rdquo;) vs. non-discriminative unigram stopwords.
+                        <strong>Figure 4.6</strong> Word Pairs (Bigrams) vs. Single Words: Top predictive 2-word pairs (&ldquo;worst movie ever&rdquo; vs. &ldquo;highly recommend&rdquo;). Single words like &ldquo;movie&rdquo; give almost no sentiment signal.
                     </div>
                 </div>
             </div>
@@ -1023,7 +1023,7 @@
             <div class="figure-plate" style="margin-top: 12px;">
                 <img src="images/eda_plot_7.png" alt="Punctuation Anger Index">
                 <div class="figure-caption">
-                    <strong>Figure 4.7</strong> Punctuation Density vs. Rating: Exclamation marks (<code>!</code>) mapped against rating scores. 1-star reviews contain dramatically elevated exclamation marks and ALL-CAPS shouting.
+                    <strong>Figure 4.7</strong> Punctuation vs. Rating: Exclamation mark frequency across 1&ndash;10 ratings. 1-star reviews use significantly more exclamation marks (<code>!</code>) and ALL-CAPS words.
                 </div>
             </div>
         </div>
@@ -1145,13 +1145,13 @@
             <div>
                 <div class="footer-brand">Data Speaks!! &bull; Team 12</div>
                 <p>
-                    Midterm data analysis project on sentiment classification, rating prediction and clustering of IMDB movie reviews.
+                    Multidisciplinary Data Science (MDS) course project by 3rd year B.Tech students at IIT Dharwad. Natural language processing, rating prediction, and clustering on 100,000 IMDB movie reviews.
                 </p>
             </div>
             <div class="footer-col">
                 <h5>Navigation</h5>
                 <ul class="footer-links">
-                    <li><a href="index.html">01 &bull; Project Overview (PS)</a></li>
+                    <li><a href="index.html">01 &bull; Project (PS)</a></li>
                     <li><a href="results.html">02 &bull; Results</a></li>
                     <li><a href="team.html">03 &bull; Team</a></li>
                 </ul>
